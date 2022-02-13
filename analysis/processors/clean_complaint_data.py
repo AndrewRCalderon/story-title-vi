@@ -43,10 +43,18 @@ class TitleVIDataModel:
 
 
         # single captures
-        data['clean_current_status_date'] = data['current_status'].str.extract('.* (\d{1,2}/\d{1,2}/\d{4}):', expand=True)
+        data['clean_current_status_date'] = data['current_status'].str.extract('.* (\d{1,2}/\d{1,2}/\d{4}).*', expand=True)
         data['clean_current_status_cause'] = data['current_status'].str.extract('.*: (.*)', expand=True)
         data['clean_alleged_discrimination_basis'] = data['alleged_discrimination_basis'].str.extract('.*: (.*)', expand=True) 
         data['clean_current_status_date'] = pd.to_datetime(data['clean_current_status_date']) # ERROR: all worked except for extraction on complaint # 06R-15-R6 -> has two dates in description
+
+        # split data
+        split_columns = data['clean_alleged_discrimination_basis'].str.split(pat=",|;", expand=True)
+        data = pd.concat([data, split_columns], axis=1)
+
+        # calculate time difference
+
+        data['time_elapsed_since_update'] = (data['clean_current_status_date'] - data['clean_date_received']).dt.days
 
         return data
 
