@@ -54,6 +54,7 @@ class transformMapComplaintdata:
         # set choices based on conditions above
         rejected_choices = ["rejected"]
         rejected_referred_choices = ["rejected & referred"]
+        rejected_without_prejudice_choices = ["rejected without prejudice"]
 
         admin_closure_choices = ["administrative closure"]
 
@@ -61,11 +62,10 @@ class transformMapComplaintdata:
 
         resolved_choices = ["resolved"]
 
-        rejected_without_prejudice_choices = ["rejected without prejudice"]
-
         # apply conditions and choices to create new mapped columns
         data['rejected_map'] = np.select(rejected_conditions, rejected_choices, default='')
         data['rejected_referred_map'] = np.select(rejected_referred_conditions, rejected_referred_choices, default='')
+        data['rejected_without_prejudice_map'] = np.select(rejected_without_prejudice_conditions, rejected_without_prejudice_choices, default='')
 
         data['admin_closure_map'] = np.select(admin_closure_conditions, admin_closure_choices, default='')
 
@@ -73,18 +73,14 @@ class transformMapComplaintdata:
 
         data['resolved_map'] = np.select(resolved_conditions, resolved_choices, default='')
 
-        data['rejected_without_prejudice_map'] = np.select(rejected_without_prejudice_conditions, rejected_without_prejudice_choices, default='')
-
-        
-
-
         # generate single column with all mapped variables
         data['mapped_current_case_status'] = data['rejected_map'] +\
             data['rejected_referred_map'] +\
-                data['admin_closure_map'] +\
-                    data['pending_map'] +\
-                        data['resolved_map'] +\
-                            data['rejected_without_prejudice_map']
+                data['rejected_without_prejudice_map'] +\
+                    data['admin_closure_map'] +\
+                        data['pending_map'] +\
+                            data['resolved_map'] 
+                            
         
 
         
