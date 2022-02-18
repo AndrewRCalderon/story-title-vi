@@ -22,21 +22,16 @@ class transformMapComplaintdata:
 
         regex_resolved_match = r'(^resolved.*)'
 
-        
-
         # store extracted strings
         data['rejected'] = data['clean_current_status'].str.extract(regex_rejected_match)
         data['rejected_referred'] = data['clean_current_status'].str.extract(regex_rejected_referred_match)
+        data['rejected_without_prejudice'] = data['clean_current_status'].str.extract(regex_rejected_without_prejudice_match)
 
         data['admin_closure'] = data['clean_current_status'].str.extract(regex_admin_closure_match)
 
         data['pending'] = data['clean_current_status'].str.extract(regex_pending_match)
 
         data['resolved'] = data['clean_current_status'].str.extract(regex_resolved_match)
-
-        data['rejected_without_prejudice'] = data['clean_current_status'].str.extract(regex_rejected_without_prejudice_match)
-
-        
 
         # set conditions for value mapping
         rejected_conditions = [(data['rejected'].str.contains('.*') == True)]
@@ -48,8 +43,6 @@ class transformMapComplaintdata:
         pending_conditions = [(data['pending'].str.contains('.*') == True)]
 
         resolved_conditions = [(data['resolved'].str.contains('.*') == True)]
-
-        
 
         # set choices based on conditions above
         rejected_choices = ["rejected"]
