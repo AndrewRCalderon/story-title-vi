@@ -1,0 +1,25 @@
+pipenv run python analysis/processors/map_complaint_data.py
+0                     pending
+1                     pending
+2                     pending
+3                     pending
+4                    rejected
+                ...          
+182       rejected & referred
+183    administrative closure
+184                  rejected
+185    administrative closure
+186                  rejected
+Name: clean_current_status, Length: 187, dtype: object
+0                     pending
+1                     pending
+2                     pending
+3                     pending
+4                    rejected
+                ...          
+182       rejected & referred
+183    administrative closure
+184                  rejected
+185    administrative closure
+186                  rejected
+Name: clean_current_status, Length: 187, dtype: object

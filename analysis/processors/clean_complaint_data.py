@@ -7,6 +7,7 @@ class TitleVIDataModel:
         self.filepath = filepath
         self.cleaned_data = self.clean_data()
         self.transformed_data = self.transform_data()
+        self.filtered_data = self.filter_columns()
     
     def clean_data(self):
         data = pd.read_csv(self.filepath)
@@ -57,16 +58,37 @@ class TitleVIDataModel:
         data['time_elapsed_since_update'] = (data['clean_current_status_date'] - data['clean_date_received']).dt.days
 
         return data
+    
+    def filter_columns(self): 
+        data = self.transformed_data
+
+        filter_columns = [
+            'epa_complaint_#',
+            'named_entity',
+            'clean_date_received',
+            'clean_current_status',
+            'clean_current_status_date',
+            'clean_current_status_cause',
+            'clean_alleged_discrimination_basis',
+            0,
+            1,
+            'time_elapsed_since_update'
+            ]
+        
+        data[filter_columns]
+
+        return data
 
 
 def main():
-    filepath = 'analysis/source_data/tabula-Inquiry from The Guardian-- UPDATED Complaints Received in FY 2022 to date- 11-12-2021 thru FY2014.csv'
+    filepath = 'analysis/source_data/tabula-complaints-received-in-FY-2022-to-date-11-12-2021-thru-FY2014.csv'
 
     analyzer = TitleVIDataModel(filepath)
     analyzer.clean_data()
     analyzer.transform_data()
+    analyzer.filter_columns()
 
-    analyzer.transformed_data.to_csv('analysis/output_data/data_complaint_logs_titlevi.csv', index=False)
+    analyzer.filtered_data.to_csv('analysis/output_data/data_complaint_logs_titlevi.csv', index=False)
 
 
 if __name__ == "__main__":
