@@ -1,25 +1,29 @@
-pipenv run python analysis/processors/map_complaint_data.py
-0                     pending
-1                     pending
-2                     pending
-3                     pending
-4                    rejected
-                ...          
-182       rejected & referred
-183    administrative closure
-184                  rejected
-185    administrative closure
-186                  rejected
-Name: clean_current_status, Length: 187, dtype: object
-0                     pending
-1                     pending
-2                     pending
-3                     pending
-4                    rejected
-                ...          
-182       rejected & referred
-183    administrative closure
-184                  rejected
-185    administrative closure
-186                  rejected
-Name: clean_current_status, Length: 187, dtype: object
+pipenv run python analysis/processors/clean_epa_complaints_2014-2022.py
+    epa_complaint_#  ...                               clean_current_status
+0         01r-22-r4  ...                                            pending
+1         02r-22-r4  ...                                            pending
+2         01r-22-r5  ...                                            pending
+4         01r-21-r9  ...                                            pending
+5         02r-21-r9  ...                                           rejected
+..              ...  ...                                                ...
+100      24rd-17-r3  ...                         rejected without prejudice
+102       01x-16-r5  ...                                      admin closure
+103      02no-16-r4  ...     resolved through informal resolution agreement
+104       03d-16-r2  ...  resolved through early complaint resolution ag...
+105       04r-16-r4  ...                                           rejected
+
+[100 rows x 7 columns]
+    epa_complaint_#  ...                               clean_current_status
+0         01r-22-r4  ...                                            pending
+1         02r-22-r4  ...                                            pending
+2         01r-22-r5  ...                                            pending
+4         01r-21-r9  ...                                            pending
+5         02r-21-r9  ...                                           rejected
+..              ...  ...                                                ...
+100      24rd-17-r3  ...                         rejected without prejudice
+102       01x-16-r5  ...                                      admin closure
+103      02no-16-r4  ...     resolved through informal resolution agreement
+104       03d-16-r2  ...  resolved through early complaint resolution ag...
+105       04r-16-r4  ...                                           rejected
+
+[100 rows x 7 columns]
