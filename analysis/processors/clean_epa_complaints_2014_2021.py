@@ -81,14 +81,14 @@ class TitleVIDataModel:
 
 
 def main():
-    filepath = 'analysis/source_data/tabula-complaints-received-in-FY-2022-to-date-11-12-2021-thru-FY2014.csv'
+    filepath = 'analysis/source_data/epa-complaints-2014-2021.csv'
 
     analyzer = TitleVIDataModel(filepath)
     analyzer.clean_data()
     analyzer.transform_data()
     analyzer.filter_columns()
 
-    analyzer.filtered_data.to_csv('analysis/output_data/data_complaint_logs_titlevi.csv', index=False)
+    analyzer.filtered_data.to_csv('analysis/output_data/data-epa-complaints-2014-2021.csv', index=False)
 
 
 if __name__ == "__main__":

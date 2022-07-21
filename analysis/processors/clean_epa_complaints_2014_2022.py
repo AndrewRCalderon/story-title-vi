@@ -77,7 +77,7 @@ class TitleVIDataModel:
 
 
 def main():
-    filepath = 'analysis/source_data/epa-complaints-complaints-2014-2021.csv'
+    filepath = 'analysis/source_data/epa-complaints-2014-2022-7-8.csv'
 
     analyzer = TitleVIDataModel(filepath)
     analyzer.clean_data()

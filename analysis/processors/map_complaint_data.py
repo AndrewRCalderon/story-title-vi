@@ -31,7 +31,7 @@ class transformMapComplaintdata:
 
 def main():
 
-    filepath = 'analysis/output_data/data_complaint_logs_titlevi.csv'
+    filepath = 'analysis/output_data/epa_complaints_2014_2021.csv'
 
     analyzer = transformMapComplaintdata(filepath)
     analyzer.map_current_status()
