@@ -20,6 +20,10 @@ clean/source_data:
 clean/output_data: 
 	rm -rf analysis/output_data/*
 
+.PHONY: tests
+tests:
+	${PYENV} pytest tests
+
 ##@ Run processors
 
 clean-textracted-epa-complaints: analysis/source_data/tabula-complaints-received-in-FY-2022-to-date-11-12-2021-thru-FY2014.csv
