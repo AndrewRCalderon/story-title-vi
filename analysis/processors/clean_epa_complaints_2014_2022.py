@@ -1,19 +1,25 @@
 import pandas as pd
-import helpers
+from .helpers.helpers import clean_columns
 
 class TitleVIDataModel: 
 
     def __init__(self, filepath):
         self.filepath = filepath
-        self.cleaned_data = self.clean_data()
-        self.transformed_data = self.transform_data()
-        self.filtered_data = self.filter_columns()
+        
+        self.loaded_data = self.load_data()
+        # self.cleaned_data = self.clean_data()
+        # self.transformed_data = self.transform_data()
+        # self.filtered_data = self.filter_columns()
     
-    def clean_data(self):
+    def load_data(self):
         data = pd.read_csv(self.filepath)
 
+        return data
+        
+    def clean_data(self):
+
         # standardize column names using helper function
-        data.columns = helpers.clean_columns(data)
+        data.columns = clean_columns(data)
 
         # some column names are repeated throughout the dataset 
         # after textract
@@ -22,6 +28,7 @@ class TitleVIDataModel:
 
         # remove newline characters from all values, lowercase and strip extra whitespace
         data = data.apply(lambda s: s.str.lower().str.strip().str.replace('\r', ' ').str.replace('\n', ' ') if s.dtype == object else s, axis = 0)
+
 
         # change date format
         data['clean_date_received'] = pd.to_datetime(data['date_received'], errors='coerce')
@@ -81,10 +88,10 @@ def main():
 
     analyzer = TitleVIDataModel(filepath)
     analyzer.clean_data()
-    analyzer.transform_data()
+    # analyzer.transform_data()
     # analyzer.filter_columns()
 
-    analyzer.transformed_data.to_csv('analysis/output_data/data_complaint_logs_titlevi_2014_2022.csv', index=False)
+    # analyzer.transformed_data.to_csv('analysis/output_data/data_complaint_logs_titlevi_2014_2022.csv', index=False)
 
 
 if __name__ == "__main__":

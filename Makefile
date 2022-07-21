@@ -22,17 +22,17 @@ clean/output_data:
 
 .PHONY: tests
 tests:
-	${PYENV} pytest tests
+	${PYENV} pytest
 
 ##@ Run processors
 
-clean-textracted-epa-complaints: analysis/source_data/tabula-complaints-received-in-FY-2022-to-date-11-12-2021-thru-FY2014.csv
-	${PYENV} python analysis/processors/clean_textracted_complaint_data.py
+clean-epa-complaints-14-21: analysis/source_data/epa-complaints-2014-2021.csv
+	${PYENV} python analysis/processors/clean_epa_complaints_2014_2021.py
 
-clean-epa-complaints-14-21: analysis/source_data/epa-complaints-complaints-2014-2021.csv
-	${PYENV} python analysis/processors/clean_epa_complaints_2014-2022.py
+clean-epa-complaints-14-22: analysis/source_data/epa-complaints-2014-2022-7-8.csv
+	${PYENV} python analysis/processors/clean_epa_complaints_2014_2022.py > test.txt
 
-analysis/output_data/mapped_data_complaint_logs_titlevi.csv: analysis/output_data/data_complaint_logs_titlevi.csv
-	${PYENV} python analysis/processors/map_complaint_data.py
+# analysis/output_data/mapped_data_complaint_logs_titlevi.csv: analysis/output_data/data_complaint_logs_titlevi.csv
+# 	${PYENV} python analysis/processors/map_complaint_data.py
 
 

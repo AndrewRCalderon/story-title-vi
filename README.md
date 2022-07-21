@@ -12,7 +12,7 @@ We have Title VI complaint logs from the Evironmental Protection Agency (EPA) fr
 
 3. Complaints from Jan. 2014 to Jul. 8, 2022 that Andrew pulled from EPA ECRCO's website stored in `analysis/output_data/epa-complaints-2014-2022-7-8.csv`
 
-## The code
+## What we don't know
 
 # To-do
 
