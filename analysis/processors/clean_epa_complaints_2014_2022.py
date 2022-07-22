@@ -1,7 +1,7 @@
 #!/usr/bin/env python   
 
 import pandas as pd
-from analysis.processors.helper_functions.helpers import clean_columns
+from helpers import helpers
 import fire
 import pdb
 
@@ -17,7 +17,7 @@ class TitleVIDataModel:
         
     def clean_data(self):
         # standardize column names using helpers function
-        self.data.columns = clean_columns(self.data)
+        self.data.columns = helpers.clean_columns(self.data)
 
         # some column names are repeated throughout the dataset 
         # after textract
