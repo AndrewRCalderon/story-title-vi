@@ -1,5 +1,5 @@
 import unittest
-from analysis.processors.clean_epa_complaints_2014_2022 import TitleVIDataModel
+from analysis.processors.clean_epa_complaints_2014_2022  import TitleVIDataModel
 
 
 class TestEPAComplaintsClean2014to2022(unittest.TestCase):
