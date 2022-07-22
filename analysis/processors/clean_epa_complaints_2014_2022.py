@@ -1,17 +1,14 @@
+#!/usr/bin/env python   
+
 import pandas as pd
-import analysis.processors.helpers.helpers as helpers
+from analysis.processors.helper_functions.helpers import clean_columns
 import fire
 import pdb
 
 class TitleVIDataModel: 
     def __init__(self, filepath):
         self.filepath = filepath
-        
         self.data = self.load_data()
-
-        # self.cleaned_data = self.clean_data()
-        # self.transformed_data = self.transform_data()
-        # self.filtered_data = self.filter_columns()
     
     def load_data(self):
         data = pd.read_csv(self.filepath)
@@ -20,7 +17,7 @@ class TitleVIDataModel:
         
     def clean_data(self):
         # standardize column names using helpers function
-        self.data.columns = helpers.clean_columns(self.data)
+        self.data.columns = clean_columns(self.data)
 
         # some column names are repeated throughout the dataset 
         # after textract
@@ -28,7 +25,7 @@ class TitleVIDataModel:
         self.data.drop(self.data[self.data['epa_complaint_#'] == "EPA Complaint #"].index, inplace = True)
 
         # remove newline characters from all values, lowercase and strip extra whitespace
-        self.data = self.data.apply(lambda s: s.str.lower().str.strip().str.replace('\r', ' ').str.replace('\n', ' ') if s.dtype == object else s, axis = 0)
+        self.data = self.data.apply(lambda s: s.str.lower().str.strip().str.replace('\r', '').str.replace('\n', '') if s.dtype == object else s, axis = 0)
 
 
         # change date format
@@ -66,24 +63,22 @@ class TitleVIDataModel:
         return self
     
     def filter_columns(self): 
-        data = self.transformed_data
-
         filter_columns = [
             'epa_complaint_#',
             'named_entity',
             'clean_date_received',
             'clean_current_status',
             'clean_current_status_date',
-            'clean_current_status_cause',
+            'clean_current_status_reason',
             'clean_alleged_discrimination_basis',
             0,
             1,
-            'time_elapsed_since_update'
+            'time_elapsed_since_update',
             ]
         
-        data = data[filter_columns]
+        self.data = self.data[filter_columns]
 
-        return data
+        return self
     
     def get_data(self, return_copy=True):
         if return_copy:
