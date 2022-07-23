@@ -6,12 +6,14 @@ import fire
 import pdb
 
 class TitleVIDataModel: 
-    def __init__(self, filepath):
-        self.filepath = filepath
+    FILE_PATH = "analysis/source_data/epa-complaints-2014-2022-7-8.csv"
+
+    def __init__(self):
+        self.filepath = self.FILE_PATH
         self.data = self.load_data()
     
     def load_data(self):
-        data = pd.read_csv(self.filepath)
+        data = pd.read_csv(self.FILE_PATH)
 
         return data
         
@@ -39,16 +41,38 @@ class TitleVIDataModel:
         # combine in a single list series and put into a dataframe
         # and fill in blanks in the new dataframe with original values
         # finally, concat that new df horizontally to existing data
-        clean_status_capture_groups = data_copy['current_status'].str.extract('(.*) \d{1,2}/\d{1,2}/\d{4}:|(.*):', expand=False)
-        clean_status_capture_groups_df = pd.DataFrame({'clean_current_status': clean_status_capture_groups[0].fillna(clean_status_capture_groups[1])})['clean_current_status'].fillna(data_copy['current_status']) 
-        
+        clean_status_capture_groups = data_copy['current_status'].str.extract('(.*) \d{1,2}\/\d{1,2}\/\d{4}:|(.*)', expand=False)
+
+        capture_group_dict  = {
+            
+            'clean_current_status': clean_status_capture_groups[0].fillna(clean_status_capture_groups[1])
+            
+            }
+
+        # the fillna method is a safety here. just in case the above regexes missed anything, 
+        # the result will be Nan. Those Nans will be filled with the original string, making
+        # it easier to identify a failure.
+        clean_status_capture_groups_df = pd.DataFrame(capture_group_dict)['clean_current_status'].fillna(data_copy['current_status']) 
         data_copy = pd.concat([data_copy, clean_status_capture_groups_df], axis=1)
 
+
+        # also handle multiple captures of matching patterns for date in current_status
+        clean_status_date_capture_groups = data_copy['current_status'].str.extract('.* (\d{1,2}/\d{1,2}/\d{4}).*|[:a-z](\d{1,2}/\d{1,2}/\d{4})', expand=False)
+
+        status_date_capture_group_dict  = {
+            
+            'clean_current_status_date': clean_status_date_capture_groups[0].fillna(clean_status_date_capture_groups[1])
+            
+            }
+
+        clean_status_date_capture_groups = pd.DataFrame(status_date_capture_group_dict)['clean_current_status_date']
+        data_copy = pd.concat([data_copy, clean_status_date_capture_groups], axis=1)
+
+        data_copy['clean_current_status_date'] = pd.to_datetime(data_copy['clean_current_status_date'], errors='coerce') # ERROR: all worked except for extraction on complaint # 06R-15-R6 -> has two dates in description  
+
         # single captures
-        data_copy['clean_current_status_date'] = data_copy['current_status'].str.extract('.* (\d{1,2}/\d{1,2}/\d{4}).*', expand=True)
         data_copy['clean_current_status_reason'] = data_copy['current_status'].str.extract('.*: (.*)', expand=True)
         data_copy['clean_alleged_discrimination_basis'] = data_copy['alleged_discrimination_basis'].str.extract('.*: (.*)', expand=True) 
-        data_copy['clean_current_status_date'] = pd.to_datetime(data_copy['clean_current_status_date']) # ERROR: all worked except for extraction on complaint # 06R-15-R6 -> has two dates in description
 
         # split data
         split_columns = data_copy['clean_alleged_discrimination_basis'].str.split(pat=",|;", expand=True)
@@ -67,6 +91,7 @@ class TitleVIDataModel:
             'epa_complaint_#',
             'named_entity',
             'clean_date_received',
+            'current_status',
             'clean_current_status',
             'clean_current_status_date',
             'clean_current_status_reason',
@@ -89,20 +114,16 @@ class TitleVIDataModel:
 
 
 
-def main(file_path: str):
-    analyzer = TitleVIDataModel(file_path)
+def main():
+    analyzer = TitleVIDataModel()
 
     loaded_data = analyzer.get_data()
-    assert loaded_data.shape[0] == 212
+    assert len(loaded_data) == 212
 
-    cleaned_transformed_data = analyzer.clean_data().transform_data().get_data()
-
-    print(cleaned_transformed_data.columns)
-
-    # analyzer.transform_data()
-    # analyzer.filter_columns()
-
-    # analyzer.transformed_data.to_csv('analysis/output_data/data_complaint_logs_titlevi_2014_2022.csv', index=False)
+    analysis_data_export = analyzer.clean_data().transform_data().filter_columns().get_data()
+    assert len(analysis_data_export) == 204
+    
+    analysis_data_export.to_csv('analysis/output_data/data_complaint_logs_titlevi_2014_2022.csv', index=False)
 
 
 if __name__ == "__main__":
