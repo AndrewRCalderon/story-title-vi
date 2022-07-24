@@ -25,6 +25,12 @@ clean/output_data:
 tests:
 	${PIPENV} pytest
 
+.PHONY: pythonpath
+pythonpath:
+	cd analysis
+	export PYTHONPATH=.
+	cd ..
+
 ##@ Run processors
 
 clean-epa-complaints-14-21: analysis/source_data/epa-complaints-2014-2021.csv

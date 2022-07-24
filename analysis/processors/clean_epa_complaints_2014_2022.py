@@ -35,7 +35,7 @@ class TitleVIDataModel:
 
         return self
     
-    def transform_data(self):
+    def extract_pattern_matches(self):
         """
         Receives data from self.data and runs through all of the columns performing
         pattern matches and string tagging to generate a clean data set of the epa complaint
@@ -54,7 +54,7 @@ class TitleVIDataModel:
         to create a dict and eventualy a new pd.DataFrame with the 
         pattern-matched strings and flags.
         """
-        clean_status_capture_groups = data_copy['current_status'].str.extract('(.*)\d{1,2}/\d{1,2}/\d{4}[: ]|(.*)[: ]', expand=False)
+        clean_status_capture_groups = data_copy['current_status'].str.extract('(.*)\d{1,2}/\d{1,2}/\d{4}[: ]|(.*):', expand=False)
         clean_status_date_capture_groups = data_copy['current_status'].str.extract('.* (\d{1,2}/\d{1,2}/\d{4}).*|[:a-z](\d{1,2}/\d{1,2}/\d{4})', expand=False)
 
         capture_group_dict  = {
@@ -69,24 +69,37 @@ class TitleVIDataModel:
         
         data_copy = pd.concat([data_copy, clean_status_capture_groups_df], axis=1) # reatached dict with pattern mathes to data_copy
 
-        data_copy['clean_current_status_date'] = pd.to_datetime(data_copy['clean_current_status_date'], errors='coerce') # ERROR: all worked except for extraction on complaint # 06R-15-R6 -> has two dates in description  
+        clean_referred_agency_capture_groups = data_copy['clean_current_status'].str.extract(' to (\w+)|(\(.*\))', expand=True)
+        agency_referred_dict = {
+            'clean_referred_agency': clean_referred_agency_capture_groups[0].fillna(clean_referred_agency_capture_groups[1])
+
+        } 
+        clean_referred_agency_capture_groups_df = pd.DataFrame(agency_referred_dict)
+        data_copy = pd.concat([data_copy, clean_referred_agency_capture_groups_df], axis=1) # reatached dict with pattern mathes to data_copy
+        
 
         ## SINGLE CAPTURES
         data_copy['clean_current_status_reason'] = data_copy['current_status'].str.extract('.*: (.*)', expand=True)
         data_copy['clean_alleged_discrimination_basis'] = data_copy['alleged_discrimination_basis'].str.extract('.*: (.*)', expand=True) 
 
-        # split data
-        split_columns = data_copy['clean_alleged_discrimination_basis'].str.split(pat=",|;", expand=True)
-        data_copy = pd.concat([data_copy, split_columns], axis=1)
-
-        # calculate time difference
-
-        data_copy['time_elapsed_since_update'] = (data_copy['clean_current_status_date'] - data_copy['clean_date_received']).dt.days
-
         self.data = data_copy
 
         return self
     
+    def clean_pattern_matches(self):
+        data_copy = self.data.copy()
+        
+        self.data['clean_current_status'] = self.data['clean_current_status'].str.replace('1', '').str.replace(' to \w+', '')
+        
+        split_columns = data_copy['clean_alleged_discrimination_basis'].str.split(pat=",|;", expand=True)
+        data_copy = pd.concat([data_copy, split_columns], axis=1)
+
+
+    def calculate_time_difference(self):
+        data_copy = self.data.copy()
+        data_copy['clean_current_status_date'] = pd.to_datetime(data_copy['clean_current_status_date'], errors='coerce') # ERROR: all worked except for extraction on complaint # 06R-15-R6 -> has two dates in description  
+        data_copy['time_elapsed_since_update'] = (data_copy['clean_current_status_date'] - data_copy['clean_date_received']).dt.days
+
     def filter_columns(self): 
         filter_columns = [
             'epa_complaint_#',
@@ -99,6 +112,7 @@ class TitleVIDataModel:
             'clean_alleged_discrimination_basis',
             0,
             1,
+            'clean_referred_agency',
             'time_elapsed_since_update',
             ]
         
@@ -121,7 +135,7 @@ def main():
     loaded_data = analyzer.get_data()
     assert len(loaded_data) == 212
 
-    analysis_data_export = analyzer.clean_data().transform_data().filter_columns().get_data()
+    analysis_data_export = analyzer.clean_data().extract_pattern_matches().filter_columns().get_data()
     assert len(analysis_data_export) == 204
     
     analysis_data_export.to_csv('analysis/output_data/data_complaint_logs_titlevi_2014_2022.csv', index=False)
