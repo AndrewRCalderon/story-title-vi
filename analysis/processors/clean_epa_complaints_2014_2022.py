@@ -1,5 +1,6 @@
 #!/usr/bin/env python   
 
+from ssl import HAS_NEVER_CHECK_COMMON_NAME
 import pandas as pd
 import analysis.helper_functions.helpers as helpers
 import fire
@@ -27,7 +28,7 @@ class TitleVIDataModel:
         self.data.drop(self.data[self.data['epa_complaint_#'] == "EPA Complaint #"].index, inplace = True)
 
         # remove newline characters from all values, lowercase and strip extra whitespace
-        self.data = self.data.apply(lambda s: s.str.lower().str.strip().str.replace('\r', '').str.replace('\n', '') if s.dtype == object else s, axis = 0)
+        self.data = self.data.apply(lambda s: s.str.lower().str.strip().str.replace('\r', ' ').str.replace('\n', ' ') if s.dtype == object else s, axis = 0)
 
 
         # change date format
@@ -54,6 +55,11 @@ class TitleVIDataModel:
         to create a dict and eventualy a new pd.DataFrame with the 
         pattern-matched strings and flags.
         """
+
+        # :HACK
+        # I can put this pattern into a static method
+        # so that it's not repeated here multiple times.
+        # Hopefully will refactor later. 
         clean_status_capture_groups = data_copy['current_status'].str.extract('(.*)\d{1,2}/\d{1,2}/\d{4}[: ]|(.*):', expand=False)
         clean_status_date_capture_groups = data_copy['current_status'].str.extract('.* (\d{1,2}/\d{1,2}/\d{4}).*|[:a-z](\d{1,2}/\d{1,2}/\d{4})', expand=False)
 
@@ -89,16 +95,23 @@ class TitleVIDataModel:
     def clean_pattern_matches(self):
         data_copy = self.data.copy()
         
-        self.data['clean_current_status'] = self.data['clean_current_status'].str.replace('1', '').str.replace(' to \w+', '')
+        data_copy['clean_current_status'] = data_copy['clean_current_status'].str.replace('1', '', regex=True).str.replace(' to \w+', '', regex=True)
         
         split_columns = data_copy['clean_alleged_discrimination_basis'].str.split(pat=",|;", expand=True)
         data_copy = pd.concat([data_copy, split_columns], axis=1)
+        
+        self.data = data_copy
 
+        return self
 
     def calculate_time_difference(self):
         data_copy = self.data.copy()
         data_copy['clean_current_status_date'] = pd.to_datetime(data_copy['clean_current_status_date'], errors='coerce') # ERROR: all worked except for extraction on complaint # 06R-15-R6 -> has two dates in description  
         data_copy['time_elapsed_since_update'] = (data_copy['clean_current_status_date'] - data_copy['clean_date_received']).dt.days
+
+        self.data = data_copy
+        
+        return self
 
     def filter_columns(self): 
         filter_columns = [
@@ -135,7 +148,7 @@ def main():
     loaded_data = analyzer.get_data()
     assert len(loaded_data) == 212
 
-    analysis_data_export = analyzer.clean_data().extract_pattern_matches().filter_columns().get_data()
+    analysis_data_export = analyzer.clean_data().extract_pattern_matches().clean_pattern_matches().calculate_time_difference().filter_columns().get_data()
     assert len(analysis_data_export) == 204
     
     analysis_data_export.to_csv('analysis/output_data/data_complaint_logs_titlevi_2014_2022.csv', index=False)
