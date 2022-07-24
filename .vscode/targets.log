@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Wed Jul 20 20:47:18 2022
+# Make data base, printed on Sun Jul 24 12:07:25 2022
 
 # Variables
 
@@ -51,11 +48,11 @@ PYENV_ROOT = /Users/AndrewRCalderon/.pyenv
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.oHamsugMov/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.DwDoARGKHA/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = /private/tmp/com.apple.launchd.l3ZMN47Gva/org.macosforge.xquartz:0
+DISPLAY = /private/tmp/com.apple.launchd.hGR88RCYMX/org.macosforge.xquartz:0
 # environment
 PWD = /Users/AndrewRCalderon/Desktop/projects/story-title-vi
 # environment
@@ -69,13 +66,15 @@ HOME = /Users/AndrewRCalderon
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/AndrewRCalderon/Library/Application Support/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+VSCODE_CODE_CACHE_PATH = /Users/AndrewRCalderon/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
 LOGNAME = AndrewRCalderon
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 ZSH = /Users/AndrewRCalderon/.oh-my-zsh
+# makefile (from `Makefile', line 4)
+PIPENV = pipenv run
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -107,7 +106,7 @@ TMPDIR = /var/folders/vx/gxxhdlzj63xctvmhpp5dzd040000gp/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/AndrewRCalderon/Library/Application Support/Code/1.69.1-main.sock
+VSCODE_IPC_HOOK = /Users/AndrewRCalderon/Library/Application Support/Code/1.69.2-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -116,12 +115,11 @@ MAKEFLAGS = Rrqp
 MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
+ 
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.12891852703.12891852709
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.12892574979.12892574985
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
-# makefile (from `Makefile', line 4)
-PYENV = pipenv run
 # automatic
 +F = $(notdir $+)
 # environment
@@ -147,7 +145,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5856
+VSCODE_PID = 1543
 # variable set hash-table stats:
 # Load=67/1024=7%, Rehash=0, Collisions=2/91=2%
 
@@ -157,9 +155,9 @@ VSCODE_PID = 5856
 
 # Directories
 
-# . (device 16777220, inode 63466167): 13 files, no impossibilities.
+# . (device 16777220, inode 63466167): 15 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -176,10 +174,19 @@ all:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-.PHONY: clean processors clean/source_data clean/output_data
+.PHONY: clean processors clean/source_data clean/output_data tests
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+tests:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 26):
+	${PIPENV} pytest
+	
 
 # Not a target:
 .SUFFIXES:
@@ -187,35 +194,37 @@ all:
 #  Modification time never checked.
 #  File has not been updated.
 
-clean-epa-complaints-14-21: analysis/source_data/epa-complaints-complaints-2014-2021.csv
+clean-epa-complaints-14-21: analysis/source_data/epa-complaints-2014-2021.csv
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 29):
-	${PYENV} python analysis/processors/clean_epa_complaints_2014-2022.py
+#  commands to execute (from `Makefile', line 31):
+	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2021.py --file_path=$<
 	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-02 18:23:54
+#  Last modified 2022-07-22 23:01:36
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-analysis/source_data/tabula-complaints-received-in-FY-2022-to-date-11-12-2021-thru-FY2014.csv:
+clean-epa-complaints-14-22: analysis/source_data/epa-complaints-2014-2022-7-8.csv
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+#  commands to execute (from `Makefile', line 34):
+	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2022.py
+	
 
 clean/source_data:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 17):
+#  commands to execute (from `Makefile', line 18):
 	rm -rf analysis/source_data/*
 	
 
@@ -242,12 +251,6 @@ processors: analysis/output_data/data_complaint_logs_titlevi.csv analysis/output
 #  File has not been updated.
 
 # Not a target:
-analysis/source_data/epa-complaints-complaints-2014-2021.csv:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -259,33 +262,35 @@ clean: clean/source_data clean/output_data
 #  File does not exist.
 #  File has not been updated.
 
-analysis/output_data/mapped_data_complaint_logs_titlevi.csv: analysis/output_data/data_complaint_logs_titlevi.csv
+# Not a target:
+analysis/source_data/epa-complaints-2014-2022-7-8.csv:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 32):
-	${PYENV} python analysis/processors/map_complaint_data.py
-	
+
+# Not a target:
+analysis/output_data/mapped_data_complaint_logs_titlevi.csv:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+analysis/source_data/epa-complaints-2014-2021.csv:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean/output_data:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 21):
+#  commands to execute (from `Makefile', line 22):
 	rm -rf analysis/output_data/*
 	
 
-clean-textracted-epa-complaints: analysis/source_data/tabula-complaints-received-in-FY-2022-to-date-11-12-2021-thru-FY2014.csv
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 26):
-	${PYENV} python analysis/processors/clean_textracted_complaint_data.py
-	
-
 # files hash-table stats:
-# Load=16/1024=2%, Rehash=0, Collisions=0/43=0%
+# Load=17/1024=2%, Rehash=0, Collisions=0/45=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -297,6 +302,8 @@ clean-textracted-epa-complaints: analysis/source_data/tabula-complaints-received
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4082 / max = 4082 / min = 4082 / avg = 4082
 
-# Finished Make data base on Wed Jul 20 20:47:18 2022
+# Finished Make data base on Sun Jul 24 12:07:25 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+

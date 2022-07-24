@@ -36,41 +36,42 @@ class TitleVIDataModel:
         return self
     
     def transform_data(self):
+        """
+        Receives data from self.data and runs through all of the columns performing
+        pattern matches and string tagging to generate a clean data set of the epa complaint
+        data from 2014 to 2022-7-8.
+
+        Returns:
+            pd.DataFrame: self.data with all of the columns, both original and cleaned from the epa complaints data
+        """        
+        
         data_copy = self.data
-        # extract multiple capture groups from same string, 
-        # combine in a single list series and put into a dataframe
-        # and fill in blanks in the new dataframe with original values
-        # finally, concat that new df horizontally to existing data
-        clean_status_capture_groups = data_copy['current_status'].str.extract('(.*) \d{1,2}\/\d{1,2}\/\d{4}:|(.*)', expand=False)
 
-        capture_group_dict  = {
-            
-            'clean_current_status': clean_status_capture_groups[0].fillna(clean_status_capture_groups[1])
-            
-            }
-
-        # the fillna method is a safety here. just in case the above regexes missed anything, 
-        # the result will be Nan. Those Nans will be filled with the original string, making
-        # it easier to identify a failure.
-        clean_status_capture_groups_df = pd.DataFrame(capture_group_dict)['clean_current_status'].fillna(data_copy['current_status']) 
-        data_copy = pd.concat([data_copy, clean_status_capture_groups_df], axis=1)
-
-
-        # also handle multiple captures of matching patterns for date in current_status
+        ## MULTIPLE CAPTURES
+        
+        """
+        Extract multiple capture groups from current_status column
+        to create a dict and eventualy a new pd.DataFrame with the 
+        pattern-matched strings and flags.
+        """
+        clean_status_capture_groups = data_copy['current_status'].str.extract('(.*)\d{1,2}/\d{1,2}/\d{4}[: ]|(.*)[: ]', expand=False)
         clean_status_date_capture_groups = data_copy['current_status'].str.extract('.* (\d{1,2}/\d{1,2}/\d{4}).*|[:a-z](\d{1,2}/\d{1,2}/\d{4})', expand=False)
 
-        status_date_capture_group_dict  = {
-            
+        capture_group_dict  = {
+
+            'clean_current_status': clean_status_capture_groups[0].fillna(clean_status_capture_groups[1]),
             'clean_current_status_date': clean_status_date_capture_groups[0].fillna(clean_status_date_capture_groups[1])
             
             }
 
-        clean_status_date_capture_groups = pd.DataFrame(status_date_capture_group_dict)['clean_current_status_date']
-        data_copy = pd.concat([data_copy, clean_status_date_capture_groups], axis=1)
+        clean_status_capture_groups_df = pd.DataFrame(capture_group_dict)
+        clean_status_capture_groups_df['clean_current_status'].fillna(data_copy['current_status'], inplace=True) # the fillna method is a safety here. just in case the above regexes missed anything.
+        
+        data_copy = pd.concat([data_copy, clean_status_capture_groups_df], axis=1) # reatached dict with pattern mathes to data_copy
 
         data_copy['clean_current_status_date'] = pd.to_datetime(data_copy['clean_current_status_date'], errors='coerce') # ERROR: all worked except for extraction on complaint # 06R-15-R6 -> has two dates in description  
 
-        # single captures
+        ## SINGLE CAPTURES
         data_copy['clean_current_status_reason'] = data_copy['current_status'].str.extract('.*: (.*)', expand=True)
         data_copy['clean_alleged_discrimination_basis'] = data_copy['alleged_discrimination_basis'].str.extract('.*: (.*)', expand=True) 
 
