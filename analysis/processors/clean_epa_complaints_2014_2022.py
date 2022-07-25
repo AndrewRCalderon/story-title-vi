@@ -86,19 +86,11 @@ class TitleVIDataModel:
             ".* (\d{1,2}/\d{1,2}/\d{4}).*|[:a-z](\d{1,2}/\d{1,2}/\d{4})",
             2,
         )
-        clean_referred_agency_capture_groups = self.capture_patterns_to_dict(
-            data_copy,
-            "current_status",
-            "clean_referred_agency",
-            " to (\w+)",
-            1,
-        )
 
         clean_capture_groups_dict = {
             **clean_status_capture_groups,
             **clean_status_date_capture_groups,
-            **clean_referred_agency_capture_groups,
-        }  ## merges two dictionaries
+        }  ## merges dictionaries
 
         clean_status_capture_groups_df = pd.DataFrame(clean_capture_groups_dict)
 
@@ -110,11 +102,10 @@ class TitleVIDataModel:
             data_copy["current_status"], inplace=True
         )  # the fillna method is a safety here. just in case the above regexes missed anything.
 
+        ## SINGLE CAPTURES
         data_copy["clean_current_status_reason"] = data_copy[
             "current_status"
         ].str.extract(".*: (.*)", expand=True)
-
-        ## SINGLE CAPTURES
 
         data_copy["clean_alleged_discrimination_basis"] = data_copy[
             "alleged_discrimination_basis"
@@ -126,6 +117,22 @@ class TitleVIDataModel:
 
     def clean_pattern_matches(self):
         data_copy = self.data.copy()
+
+        clean_referred_agency_capture_groups = self.capture_patterns_to_dict(
+            data_copy,
+            "clean_current_status",
+            "clean_referred_agency",
+            " to (.*)| \((.*)\)",
+            2,
+        )
+
+        clean_referred_agency_capture_groups_df = pd.DataFrame(
+            clean_referred_agency_capture_groups
+        )
+
+        data_copy = pd.concat(
+            [data_copy, clean_referred_agency_capture_groups_df], axis=1
+        )  # reattach dict with pattern mathes to data_copy
 
         # data_copy["clean_current_status"] = (
         #     data_copy["clean_current_status"]
@@ -211,7 +218,7 @@ class TitleVIDataModel:
         capture_groups = data[regex_column_name].str.extract(pattern, expand=False)
 
         if number_of_capture_groups == 1:
-            capture_groups_dict = {new_column_name: capture_groups[0]}
+            capture_groups_dict = {new_column_name: capture_groups}
 
         if number_of_capture_groups == 2:
             capture_groups_dict = {
