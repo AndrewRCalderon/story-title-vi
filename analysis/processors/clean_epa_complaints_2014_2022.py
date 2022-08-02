@@ -4,7 +4,6 @@ import pandas as pd
 import analysis.helper_functions.helpers as helpers
 import fire
 import pdb
-import pprint
 
 
 class TitleVIDataModel:
@@ -122,8 +121,8 @@ class TitleVIDataModel:
             data_copy,
             "clean_current_status",
             "clean_referred_agency",
-            " to (.*)| \((.*)\)",
-            2,
+            " (hud) | to (.*)| \((.*)\)",
+            3,
         )
 
         clean_referred_agency_capture_groups_df = pd.DataFrame(
@@ -134,15 +133,26 @@ class TitleVIDataModel:
             [data_copy, clean_referred_agency_capture_groups_df], axis=1
         )  # reattach dict with pattern mathes to data_copy
 
-        # data_copy["clean_current_status"] = (
-        #     data_copy["clean_current_status"]
-        #     .str.replace("1", "", regex=True)
-        #     .str.replace(" to \w+", "", regex=True)
-        #     .str.replace(" with.*", "", regex=True)
-        #     .str.replace(" \(.*\)", "", regex=True)
-        #     .str.replace("\d{1,2}/\d{1,2}/\d{4}.*", "", regex=True)
-        #     .str.replace(" -.*", "", regex=True)
-        # )
+        data_copy["clean_current_status"] = (
+            data_copy["clean_current_status"]
+            .str.replace("1", "", regex=False)
+            .str.replace(" to \w+", "", regex=True)
+            .str.replace(" with.*", "", regex=True)
+            .str.replace(" \(.*\)", "", regex=True)
+            .str.replace("\d{1,2}/\d{1,2}/\d{4}.*", "", regex=True)
+            .str.replace(" -.*", "", regex=True)
+            .str.replace(" office.*", "", regex=True)
+            .str.replace(" w/o prejudice.*", "", regex=True)
+            .str.replace(" \d.*", "", regex=True)
+            .str.strip()
+        )
+
+        data_copy["clean_current_status_reason"] = (
+            data_copy["clean_current_status_reason"]
+            .str.replace("\d+.*;", "", regex=True)
+            .str.replace("\d+.*\d", "", regex=True)
+            .str.strip()
+        )
 
         split_columns = data_copy["clean_alleged_discrimination_basis"].str.split(
             pat=",|;", expand=True
@@ -239,7 +249,10 @@ def main():
     analyzer = TitleVIDataModel()
 
     loaded_data = analyzer.get_data()
-    assert len(loaded_data) == 212
+
+    assert len(loaded_data) == 212, "Unexpected number of rows in dataframe: " + str(
+        len(loaded_data)
+    )
 
     analysis_data_export = (
         analyzer.clean_data()

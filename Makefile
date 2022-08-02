@@ -27,8 +27,7 @@ tests:
 
 .PHONY: pythonpath
 pythonpath:
-	cd analysis
-	export PYTHONPATH=.
+	cd analysis && export PYTHONPATH=.
 	cd ..
 
 ##@ Run processors
