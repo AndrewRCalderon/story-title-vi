@@ -24,6 +24,8 @@ These are the CSVs imported to Observable to generate the analysis:
 
 ## What we don't know
 
+1. We don't know how the 1996-2013 categorizes `Overview Ruling` which is synonymous with `clean_current_status_reason` in our more recent data. If we can't figure this out, then we won't be able to merge the 1996 data with the post-2013 data to create a long timeline.
+
 # To-do
 
 1. Check that all of the last update dates properly parse in the rows that have multiple updates in the `current_status` column
