@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Fri Jul 29 08:40:57 2022
+
+# Make data base, printed on Mon Oct 10 16:49:27 2022
 
 # Variables
 
@@ -42,7 +45,7 @@ PATH = /Users/AndrewRCalderon/.pyenv/shims:/Users/AndrewRCalderon/.nodenv/shims:
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-LaunchInstanceID = 1A362319-98C7-40EE-AE9B-9D9FC2373CC5
+LaunchInstanceID = BA7FE2DD-C034-475C-B33D-0FECF7C95490
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
@@ -50,11 +53,11 @@ PYENV_ROOT = /Users/AndrewRCalderon/.pyenv
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.1nLo30au4O/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.FIBjq7cul0/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = /private/tmp/com.apple.launchd.HSlDx282cY/org.macosforge.xquartz:0
+DISPLAY = /private/tmp/com.apple.launchd.eR6UCLZcF6/org.macosforge.xquartz:0
 # environment
 PWD = /Users/AndrewRCalderon/Desktop/projects/story-title-vi
 # environment
@@ -68,11 +71,11 @@ HOME = /Users/AndrewRCalderon
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/AndrewRCalderon/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CODE_CACHE_PATH = /Users/AndrewRCalderon/Library/Application Support/Code/CachedData/784b0177c56c607789f9638da7b6bf3230d47a8c
 # environment
 LOGNAME = AndrewRCalderon
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 ZSH = /Users/AndrewRCalderon/.oh-my-zsh
 # makefile (from `Makefile', line 4)
@@ -108,7 +111,7 @@ TMPDIR = /var/folders/vx/gxxhdlzj63xctvmhpp5dzd040000gp/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/AndrewRCalderon/Library/Application Support/Code/1.69.2-main.sock
+VSCODE_IPC_HOOK = /Users/AndrewRCalderon/Library/Application Support/Code/1.71.0-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -118,7 +121,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.12892574979.12892574985
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.12894536466.12894536472
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -148,7 +151,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1471
+VSCODE_PID = 1539
 # variable set hash-table stats:
 # Load=69/1024=7%, Rehash=0, Collisions=2/93=2%
 
@@ -201,14 +204,14 @@ clean-epa-complaints-14-21: analysis/source_data/epa-complaints-2014-2021.csv
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 37):
+#  commands to execute (from `Makefile', line 36):
 	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2021.py --file_path=$<
 	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-24 13:20:57
+#  Last modified 2022-08-01 21:38:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -218,7 +221,7 @@ clean-epa-complaints-14-22: analysis/source_data/epa-complaints-2014-2022-7-8.cs
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 40):
+#  commands to execute (from `Makefile', line 39):
 	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2022.py
 	
 
@@ -297,12 +300,8 @@ pythonpath:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
- 
-make: *** No rule to make target `all'.  Stop.
-
 #  commands to execute (from `Makefile', line 30):
-	cd analysis
-	export PYTHONPATH=.
+	cd analysis && export PYTHONPATH=.
 	cd ..
 	
 
@@ -315,10 +314,11 @@ make: *** No rule to make target `all'.  Stop.
 # No general (`VPATH' variable) search path.
 
 # # of strings in strcache: 2
+ 
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4082 / max = 4082 / min = 4082 / avg = 4082
 
-# Finished Make data base on Fri Jul 29 08:40:57 2022
+# Finished Make data base on Mon Oct 10 16:49:27 2022
 
  

@@ -18,7 +18,7 @@ The Makefile orchestrates the entire notebook. `make all` runs every rule to the
 
 ## Analysis
 
-These are the CSVs imported to Observable to generate the analysis:
+These are the CSVs are imported to Observable to generate the analysis:
 
 - `output_data/data_complaint_logs_titlevi_2014_2022.csv`
 
@@ -26,8 +26,14 @@ These are the CSVs imported to Observable to generate the analysis:
 
 1. We don't know how the 1996-2013 categorizes `Overview Ruling` which is synonymous with `clean_current_status_reason` in our more recent data. If we can't figure this out, then we won't be able to merge the 1996 data with the post-2013 data to create a long timeline.
 
+2.
+
+## What we want to know
+
+1. How does the rejection rate from the initial investigation compare to the current data?
+
 # To-do
 
 1. Check that all of the last update dates properly parse in the rows that have multiple updates in the `current_status` column
 2. Check that all of the `alleged_discrimination_basis` values made their way into the clean columns
-3. concat the 2014-2022 date with the 1996-2013 data
+3. Concat the 2014-2022 date with the 1996-2013 data
