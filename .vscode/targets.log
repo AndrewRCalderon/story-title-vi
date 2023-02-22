@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Mon Feb 20 20:42:58 2023
+
+# Make data base, printed on Tue Feb 21 22:08:36 2023
 
 # Variables
 
@@ -31,8 +34,8 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 _ = /usr/bin/make
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
-# makefile (from `Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
+# makefile (from `.env', line 1)
+MAKEFILE_LIST :=  Makefile .env
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
@@ -109,6 +112,8 @@ TMPDIR = /var/folders/vx/gxxhdlzj63xctvmhpp5dzd040000gp/T/
 VSCODE_IPC_HOOK = /Users/AndrewRCalderon/Library/Application Support/Code/1.75.0-main.sock
 # environment
 MallocNanoZone = 0
+# makefile (from `.env', line 1)
+PYTHONPATH = "/Users/AndrewRCalderon/Desktop/projects/story-title-vi/analysis"
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -144,9 +149,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 56811
+VSCODE_PID = 89574
 # variable set hash-table stats:
-# Load=67/1024=7%, Rehash=0, Collisions=2/91=2%
+# Load=68/1024=7%, Rehash=0, Collisions=2/94=2%
 
 # Pattern-specific Variable Values
 
@@ -154,9 +159,9 @@ VSCODE_PID = 56811
 
 # Directories
 
-# . (device 16777220, inode 63466167): 14 files, no impossibilities.
+# . (device 16777220, inode 63466167): 15 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -173,7 +178,7 @@ all:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-.PHONY: clean processors clean/source_data clean/output_data tests pythonpath
+.PHONY: clean processors clean/source_data clean/output_data tests
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -197,14 +202,14 @@ clean-epa-complaints-14-21: analysis/source_data/epa-complaints-2014-2021.csv
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 36):
+#  commands to execute (from `Makefile', line 31):
 	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2021.py --file_path=$<
 	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-02-20 19:58:33
+#  Last modified 2023-02-20 22:47:49
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -214,7 +219,7 @@ clean-epa-complaints-14-22: analysis/source_data/epa-complaints-2014-2022-7-8.cs
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 39):
+#  commands to execute (from `Makefile', line 34):
 	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2022.py
 	
 
@@ -231,9 +236,9 @@ clean/source_data:
 .env:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2023-02-20 21:45:47
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -253,8 +258,8 @@ clean-epa-complaints-14-23: analysis/source_data/epa_data/epa_ecrco_complaints_2
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 42):
-	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2023.py --file_path=$<
+#  commands to execute (from `Makefile', line 37):
+	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2023.py --file_path=$< --output_path='analysis/output_data/epa-complaints-2014-2023.csv'
 	
 
 # Not a target:
@@ -292,31 +297,19 @@ clean/output_data:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
- 
-make: *** No rule to make target `all'.  Stop.
-
 #  commands to execute (from `Makefile', line 22):
 	rm -rf analysis/output_data/*
 	
 
-pythonpath:
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 30):
-	cd analysis && export PYTHONPATH=.
-	cd ..
-	
-
 # Not a target:
+ 
 analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=20/1024=2%, Rehash=0, Collisions=0/51=0%
+# Load=19/1024=2%, Rehash=0, Collisions=0/48=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -328,6 +321,6 @@ analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4082 / max = 4082 / min = 4082 / avg = 4082
 
-# Finished Make data base on Mon Feb 20 20:42:58 2023
+# Finished Make data base on Tue Feb 21 22:08:36 2023
 
  
