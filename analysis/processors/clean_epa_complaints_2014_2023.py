@@ -118,7 +118,7 @@ class TitleVIDataClean:
 
         return self
 
-    def remove_double_spaces(self):
+    def remove_spaces(self):
         """_summary_
 
         Returns:
@@ -128,6 +128,8 @@ class TitleVIDataClean:
             lambda s: s.str.replace("  ", " ") if s.dtype == object else s,
             axis="index",
         )
+
+        self.data["epa__file__#"] = self.data["epa__file__#"].str.replace(" ", "")
 
         return self
 
@@ -290,8 +292,8 @@ class TitleVIDataClean:
         # remove newline characters from all values
         self.remove_newline_characters()
 
-        # remove all double spaces
-        self.remove_double_spaces()
+        # remove all unwanted single and double spaces
+        self.remove_spaces()
 
         # extract primary status from detailed_status
         self.extract_primary_status()
@@ -436,14 +438,14 @@ class TitleVIDataClean:
             "summary__status",
             "epa__file__#",
             "named_entity",
-            "date__received",
-            "detailed_status," "primary_status",
-            "referred_agency",
+            "clean_date_received",
+            "detailed_status",
+            "primary_status",
             "secondary_status",
             "recent_status_date",
+            "referred_agency",
             "disc_basis_1",
             "disc_basis_2",
-            "clean_date_received",
             "time_difference",
         ]
 
