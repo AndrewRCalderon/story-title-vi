@@ -1,11 +1,4 @@
-"FY
-Rec'd","Summary
-Status","EPA
-File
-#",Named Entity,"Date
-Received","Alleged
-Discrimination
-Basis",Detailed Status
+"FY Rec'd","Summary Status","EPA File #","Named Entity","Date Received","Alleged Discrimination Basis","Detailed Status",
 FY23,Closed,"06X-23-
 R6","Coield Unit (Texas
 Dept. of Criminal
@@ -50,54 +43,84 @@ File
 #",Named Entity,"Date
 Received","Alleged
 Discrimination
-Basis",Detailed Status
+Basis",Detailed Status,Related
 FY23,Active,"02R-23-
 R6","Louisiana DEQ
 (Town of Mansura)",12/16/2022,Title VI: Race,"Pending: Under
-Jurisdictional Review"
+Jurisdictional Review","02R-23
+r6%20compl"
 FY23,Active,"04RNO-
 23-R6","Louisiana DOH
 (Town of Mansura)",12/16/2022,Title VI: Race,"Pending: Under
-Jurisdictional Review"
+Jurisdictional Review",Documen
 FY23,Active,"01RNO-
 23-R9","California State
 Water Resources
 Control Board",12/16/2022,"Title VI: Race,
 National Origin","Pending: Under
-Jurisdictional Review"
+Jurisdictional Review",Documen
 FY23,Closed,"04X-23-
 R5","Carroll County, IL
 SheriDept.",11/27/2022,Unknown,"Rejected 12/6/2022: Lack
 of  Discriminatory Act,
-Lack of Timeliness"
+Lack of Timeliness","04X-23
+23-r5%20co
+(pdf) <http
+r5%20corr%"
 FY23,Active,"05NO-
 23-R6","Texas Comm. on
 Envir. Quality",11/16/2022,"Title VI: National
 Origin","Pending: Under
-Jurisdictional Review"
+Jurisdictional Review","05NO-
+r6%20compl"
 FY23,Closed,"03X-23-
 R6","Caddo Corr. Center
 (Louisiana)",11/8/2022,Unknown,"Rejected and Referred to
 DOJ 11/9/2022: Lack of
-Jurisdiction"
+Jurisdiction","03X-23
+r6%20compl
+<https://epa
+03X-22-R6
+r6%20rec%2"
 FY23,Closed,"03X-23-
 R5","Kinross Corr.
 Facility (Michigan)",11/2/2022,Unknown,"Rejected and Referred to
 DOJ 11/8/2022: Lack of
-Jurisdiction"
+Jurisdiction","03X-23
+r5%20compl
+<https://epa
+03X-23-R5
+r5%20reject-
+<https://epa
+MB)03
+r5%20compl"
 FY23,Closed,"02RNO-
 23-R5",Illinois EPA,10/31/2022,"Title VI: Race,
 National Origin","Rejected/Admin.
 Closure 1/5/2023:
-Anonymous Complaint"
+Anonymous Complaint","02RNO
+r5%20compl
+<https://epa
+%2002rno-2"
 FY23,Active,"01R-23-
 R6","City of Corpus
 Christi, TX",10/26/2022,Title VI: Race,"Pending: Under
-Jurisdictional Review"
+Jurisdictional Review","01R-23
+11/01r-23-r6"
 FY23,Active,"01R-23-
 R3","Baltimore Dept. of
 Public Works",10/24/2022,Title VI: Race,"Pending: Under
-Jurisdictional Review"
+Jurisdictional Review","01R-23
+r3%20compl"
+FY23,Closed,"01RNO-
+23-R5","Indiana Dept. of
+Envir. Mgmt.",10/21/2022,"Title VI: Race,
+National Origin","Rejected w/o Prejudice -
+Pending In-state Petitions:
+1/26/2023","01RNO
+r5%20compl
+<https://epa
+23.pdf> (23"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -125,6 +148,13 @@ R6","Caddo Correctional
 Center (Louisiana)",08/23/2022,Unknown,"Rejected and Referred to
 DOJ 10/3/2022: Lack of
 Jurisdiction"
+FY22,Closed,"02X-22-
+R8","Wyoming Women's
+Correctional
+Center",08/23/2022,"Unknown (envir.
+conditions)","Rejected and Referred to
+DOJ 10/3/2022: Lack of
+Jurisdiction"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -132,14 +162,21 @@ File
 #",Named Entity,"Date
 Received","Alleged
 Discrimination
-Basis",Detailed Status
+Basis",Detailed Status,Related
 FY22,Closed,"01RNO-
 22-R7",Missouri DNR,08/10/2022,"Title VI: Race,
 National Origin","Rejected and Referred to
 HHS 1/4/2023: Lack of
 Jurisdiction (permit in
 question not issued by
-Missouri DNR)"
+Missouri DNR)","01RNO
+r7%20compl
+<https://epa
+01/2023%20
+01RNO-22
+02/2022.10.2
+01RNO-22
+01/referral%"
 FY22,Closed,"02Rr-
 22-R9","CNMI Small
 Business
@@ -147,7 +184,18 @@ Administration
 Step Program",08/04/2022,Title VI: Race,"Rejected 10/3/2022: Lack
 of jurisdiction; complaint
 concurrently filed with
-SBA"
+SBA","02Rr-2
+09/02r-22-r9
+02Rr-2
+r9%20compl
+02Rr-2
+22-r9%20co
+02Rr-2
+22-r9%20co
+02Rr-2
+22-r9%20co
+02Rr-2
+r9%20rejecti"
 FY22,Closed,"07Rr-
 22-R5","Miami Valley
 Regional Planning
@@ -155,13 +203,29 @@ Comm. (OH)",07/27/2022,"Title VI: Race,
 Retaliation","Rejected 10/3/2022: Lack
 of jurisdiction; complaint
 concurrently filed with
-EEOC"
+EEOC","07Rr-2
+r5%20compl
+07Rr-2
+r5%20rejecti"
 FY22,Active,"05R-22-
 R3","District of
 Columbia
 (Brentwood Bus
 Facility)",05/25/2022,Title VI: Race,"Pending: Under
-Jurisdictional Review"
+Jurisdictional Review","05R-22
+r3%20compl"
+FY22,Active,"06RNO-
+22-R6","Texas Comm. on
+Envir. Quality
+(Concrete Plant)",05/17/2022,"Title VI: Race,
+National Origin","Pending: In Informal
+Resolution Negotiation","06RNO
+r6%20compl
+06RNO
+10/06rno-22
+(pdf) <http
+%20tolling%
+r6%2c%200"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -204,6 +268,9 @@ Section 504/Age
 Act: Disability, Age
 Disability","Pending: Under
 Jurisdictional Review"
+FY22,Active,"02R-22-
+R1",Massachusetts DEP,02/17/2022,Title VI: Race,"Pending: Under
+Investigation"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -211,23 +278,54 @@ File
 #",Named Entity,"Date
 Received","Alleged
 Discrimination
-Basis",Detailed Status
+Basis",Detailed Status,Related
 FY22,Active,"04R-22-
 R6","Louisiana Dept. of
 Envir. Quality (St.
 James Parish)",02/02/2022,Title VI: Race,"Pending: In Informal
-Resolution Negotiation"
+Resolution Negotiation","04R-22
+r6%20compl
+04R-22
+r6%20accep
+2022 1
+<https://epa
+10/2022%20
+r6.pdf> (101"
 FY22,Closed,"03R-22-
 R6",City of Houston,01/28/2022,Title VI: Race,"Rejected Without
 Prejudice 8/4/2022:
 Complaint Accepted for
-Investigation by U.S. DOJ"
+Investigation by U.S. DOJ","03R-22
+r6%20compl
+03R-22
+r6%20rec%2"
 FY22,Active,"03R-22-
 R4","Georgia Dept. of
 Natural Res. (Envir.
 Protection Div.)",01/24/2022,Title VI: Race,"Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","03R-22
+r4_complain
+03R-22
+10/03r-22-r4
+03R-22
+r4%20rec%2
+03R-22
+10/2022_09_"
+FY22,Active,"01R-22-
+R6","Louisiana Dept. of
+Envir. Quality (St.
+John the Baptist
+Parish)",01/20/2022,Title VI: Race,"Pending: In Informal
+Resolution Agreement
+Negotiation","01R-22
+r6%20compl
+01R-22
+r6%20accep
+2022 1
+<https://epa
+10/2022%20
+r6.pdf> (101"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -235,30 +333,71 @@ File
 #",Named Entity,"Date
 Received","Alleged
 Discrimination
-Basis",Detailed Status
+Basis",Detailed Status,Related
 FY22,Active,"02R-22-
 R6","Louisiana Dept. of
 Health",01/20/2022,Title VI: Race,"Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","02R-2
+r6%20comp
+02R-2
+10/2022.04.
+%20ldh%20
+2022 1
+<https://ep
+10/2022%2
+r6.pdf> (10"
 FY22,Closed,"04RNO-
 22-R5","City of Chicago
 (Dept. of Health)",01/11/2022,"Title VI: Race,
 National Origin","Rejected w/o Prejudice in
 Light of Pending HUD
-Investigation: 4/26/2022"
+Investigation: 4/26/2022","04RN
+r5%20comp
+04RN
+<https://ep
+r5%20rec%"
 FY22,Closed,"01NO-
 22-R10","Puget Sound Clean
 Air Agency (WA)",01/11/2022,"Title VI: National
 Origin","Rejected w/o Prejudice -
 Pending Litigation:
-1/4/2023"
+1/4/2023","01NO-
+r10%20com
+<https://ep
+%2001no-2
+<https://ep
+02/2023%2"
 FY22,Active,"01RNO-
 22-R1","Providence Water
 Supply Board (RI)",01/05/2022,"Title VI: Race,
 National Origin","Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","01RN
+r1%20comp
+01RN
+10/2022.02.
+%20provide
+01RN
+10/2022.05.
+r1_0.pdf> ("
+FY22,Closed,"03DRr-
+22-R5","Michigan EGLE –
+(Flint II)",12/31/2021,"Title VI: Race,
+Retaliation
+Section 504:
+Disability","Admin Closure
+12/14/2022: Complaint
+Withdrawn","03DRr
+r5%20comp
+03DRr
+10/01rno-2
+(pdf) <http
+%20letter%
+03DRr
+10/05.10.20
+%20epa%2
+(115.09 KB"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -308,6 +447,11 @@ FY22,Active,"01RNO-
 DEQ",12/19/2021,"Title VI: Race,
 National Origin","Pending: Under
 Investigation"
+FY22,Closed,"01D-22-
+R2",Puerto Rico ASA,11/18/2021,"Section 504:
+Disability","Rejected/Referred to
+EEOC 3/31/2022:  Lack of
+Jurisdiction"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -315,41 +459,74 @@ File
 #",Named Entity,"Date
 Received","Alleged
 Discrimination
-Basis",Detailed Status
+Basis",Detailed Status,Related
 FY22,Active,"01RNO-
 22-R5","Michigan EGLE
 (Flint I)",11/08/2021,"Title VI: Race,
 National Origin","Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","01RN
+r5%20comp
+01RN
+10/01rno-22
+01RN
+10/05.10.20
+%20epa%20
+KB)"
 FY22,Active,"02RNO-
 22-R5","Michigan EGLE
 (Detroit)",11/08/2021,"Title VI: Race,
 National Origin","Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","02RN
+r5%20comp
+02RN
+10/02rno-22
+2022.pdf> (
+02RN
+10/05.10.20
+%20epa%20
+(115.09 KB"
 FY22,Closed,"01R-22-
 R4","City of Conyers, GA",10/14/2021,Title VI: Race,"Rejected/Referred to
 HUD 7/6/2022: Lack of
-Jurisdiction"
+Jurisdiction","01R-22
+complaint_r
+01R-22
+10/01r-22-r4
+01R-22
+10/01r-22-r4"
 FY22,Active,"02R-22-
 R4","Rockdale County,
 GA",10/14/2021,Title VI: Race,"Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","02R-22
+14_complai
+02R-22
+r4%20rec%
+<https://epa
+01/2022%20"
 FY21,Active,"05RNO-
 21-R4","North Carolina
 Dept. of Envir.
 Quality",09/27/2021,"Title VI: Race,
 National Origin","Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","05RN
+r4%20comp
+(pdf) <http
+22%20suppl"
 FY21,Active,"03NO-
 21-R6","New Mexico Envir.
 Dept.",09/16/2021,"Title VI: National
 Origin","Pending: In Informal
 Resolution Agreement
-Negotiation"
+Negotiation","03NO-
+r6%20comp"
+FY21,Closed,"03R-21-
+R5",Kalamazoo County,09/01/2021,Title VI: Race,"Rejected 11/24/2021:
+Untimely Filed","03R-21
+r5%20comp"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -407,6 +584,14 @@ FY21,Closed,"01DS-
 Sayreville, NJ",06/29/2021,"Section 504/Title
 IX: Disability, Sex","Rejected 7/23/2021: Lack
 of Jurisdiction"
+FY21,Closed,"02D-21-
+R3","Maryland Dept. of
+Environment",06/01/2021,"Section 504:
+Disability,
+Employment","Rejected 7/28/2021:
+Untimely Filed/Same
+Complaint Pending with
+EEOC"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -458,6 +643,14 @@ FY21,Active,"01RNO-
 National Origin","Pending: In Informal
 Resolution Agreement
 Negotiation"
+FY21,"Resolved/In
+Monitoring","01R-21-
+R9","Bay Area Air
+Quality Monitoring
+District, CA",11/30/2020,Title VI: Race,"Resolved with Voluntary
+Compliance
+Agreement 10/03/2022: In
+Monitoring"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -529,6 +722,12 @@ Univ.",02/11/2020,Title VI: Race,"Rejected 3/3/2020: Same
 Complaint Pending with
 Lead Agency, U.S. Dept. of
 Education"
+FY20,Closed,"02R-20-
+R4","North Carolina
+DEQ",02/06/2020,"Title VI: Race,
+National Origin","Rejected without
+Prejudice 3/2/2020: Not
+Ripe for Review"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -605,6 +804,12 @@ Compliance
 Review",09/27/2019,Title VI: Race,"Resolved with Informal
 Resolution Agreement
 5/6/2020: In Monitoring"
+FY19,"Resolved/In
+Monitoring","03R-19-
+R3","WV Dept. of Envir.
+Protection",09/24/2019,Title VI: Race,"Resolved with Informal
+Resolution Agreement
+1/8/2021: In Monitoring"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -673,6 +878,11 @@ FY19,Closed,"01R-19-
 R3",Virginia DEQ,11/21/2018,Title VI: Race,"Rejected without
 Prejudice 12/28/2018: Not
 Ripe for Review"
+FY19,Closed,"01R-19-
+R4",City of Atlanta,11/01/2018,"Title VI:
+Race/Income","Rejected 5/2/2019:
+Allegations Insuiciently
+Grounded in Fact"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -741,6 +951,12 @@ of Health",08/01/2018,Title VI: Race,"Rejected without
 Prejudice 8/23/2018:
 Pending with Local
 Agency"
+FY18,Closed,"01R-18-
+R3","Virginia DEQ –
+Atlantic Coast
+Pipeline",06/19/2018,Title VI: Race,"Rejected without
+Prejudice 8/24/2018: Not
+Ripe for Investigation"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -810,6 +1026,11 @@ R3","Franklin Township,
 Butler County, PA",07/11/2017,"Section 504:
 Disability","Rejected 9/8/2017: Lack of
 Jurisdiction"
+FY17,Closed,"20S-17-
+R10","Marketeering
+Group",06/03/2017,"Sex Discrimination
+in Employment","Rejected/Closed 6/8/2017:
+Lack of Jurisdiction"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -887,6 +1108,9 @@ Disability","Rejected 12/27/2018:
 Allegation Not Grounded
 in Fact/Not Appropriate
 for Investigation/Untimely"
+FY17,Closed,"07R-17-
+R7",Missouri DNR,12/27/2016,Title VI: Race,"Rejected 7/13/2018:
+Untimely Filed"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -937,6 +1161,11 @@ administratively
 12/19/2016: provided EPA
 contact re: injection of
 flotation foam for boats"
+FY16,Closed,"46R-16-
+R4","Lee County (FL)
+School District",09/22/2016,"Title VI: Race,
+National Origin","Rejected 5/1/2017: Lack of
+Jurisdiction"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1008,6 +1237,17 @@ Further Investigation
 Unwarranted – issue
 raised in complaint
 resolved"
+FY16,Closed,"38r-16-
+R4","Alabama Dept. of
+Envir. Mgmt.
+(Arrowhead
+Landfill -
+Retaliation)",08/19/2016,"Title VI:
+Retaliation","Accepted and Admin
+Closure 10/5/2016:
+Incorporated into then-
+Pending Investigation of
+12R-13-R4"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1056,6 +1296,14 @@ FY16,N/A,"33TA-
 Res. and Envir.
 Control",06/03/2016,N/A,"Technical Assistance to
 Recipient"
+FY16,Closed,"31R-16-
+R4","St. John’s County,
+FL",05/17/2016,"Title VI: Race,
+retaliation","Rejected and Closed
+3/1/2018: Investigation
+Unwarranted-
+insuiciently grounded in
+fact"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1109,6 +1357,13 @@ R5","U.S. EPA, Region 5",04/18/2016,Title VI: Race,"Rejected 6/6/2016: Lack
 of recipient status, further
 action referred to EPA
 Region 5"
+FY16,Closed,"22R-16-
+R4","Florida Dept. of
+Envir. Protection",03/19/2016,Title VI: Race,"Rejected 3/1/2018:
+Investigation
+Unwarranted-
+insuiciently grounded in
+fact"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1144,6 +1399,15 @@ Informal Resolution
 Agreement: 12/4/2019;
 Monitoring Completed
 and Case Closed 1/5/2021"
+FY16,"Resolved/In
+Monitoring","18RD-
+16-R5","Genesee County,
+MI",03/08/2016,"Title VI: Race
+Section 504:
+Disability","Resolved Through
+Informal Resolution
+Agreement: 12/19/2019;
+In Monitoring"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1173,6 +1437,13 @@ R4","Not Provided by
 Complainant",02/24/2016,Unknown,"Rejected 8/31/2016: Lack
 of jurisdiction, referral
 unwarranted"
+FY16,Closed,"11U-
+16-R4",Duke Power,02/04/2016,"Unknown (envir.
+conditions)","Rejected/Referred
+11/2/2017: Lack of
+recipient status, envir.
+conditions referred to EPA
+R4 Drinking Water sta"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1219,6 +1490,20 @@ determine jurisdiction,
 lack of response from
 Complainant to requests
 for clarification"
+FY16,Closed,"06D-16-
+R4","Athens-Clark
+County (GA) –
+Water Quality",11/30/2015,"Section 504:
+Disability","Rejected 12/1/2017:
+Insuicient information to
+determine jurisdiction,
+lack of response from
+Complainant to requests
+for clarification,
+Complainant referred to
+Region 4 to continue
+existing actions re: envir.
+issues"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1290,6 +1575,11 @@ Colfax Treating Co.
 of Jurisdiction – referred
 EPA Region 6 (existing
 contact)"
+FY15,Closed,"24U-
+15-R4",Pipe Masters (NC),08/22/2015,"Unknown (envir.
+conditions)","Rejected 3/17/2016: Lack
+of Jurisdiction, Lack of
+Discrim. Act"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1352,6 +1642,19 @@ Corr. Inst",06/24/2015,"Unknown (envir.
 conditions)","Rejected and Referred
 (DOJ) 8/20/2015: Lack of
 Jurisdiction"
+FY15,Closed,"14U-
+15-R3","Kinzer Drilling;
+Energy Corp; WV
+DEP- Abandoned
+Mines Oice",06/24/2015,"Unknown (envir.
+conditions)","Rejected 3/17/2017: Lack
+of Jurisdiction (Kinzer,
+Energy Corp); Lack of
+Discrim. Act (WVDEP) –
+suggested contact
+DOI/OSMRE, WV Enviro
+Council, WV Rivers
+Coalition"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1413,6 +1716,13 @@ Monitoring"
 FY15,Closed,"07R-15-
 R6",Baton Rouge (LA),02/25/2015,Title VI: Race,"Rejected 8/31/2016: Lack
 of Discriminatory Act"
+FY15,Closed,"06R-15-
+R6","Ameripure Oyster
+Plant; City of
+Franklin (LA)",02/24/2015,Title VI: Race,"Rejected 5/5/2015 &
+2/11/2016: Lack of
+Jurisdiction, Untimely
+Filed"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1486,6 +1796,10 @@ Origin","Admin Closure 7/29/2016:
 Lack of Discriminatory
 Act, Lack of Complainant
 to Clarify"
+FY14,Closed,"18r-14-
+R4",City of Flovilla (GA),10/23/2014,"Title VI:
+Retaliation","Rejected 8/28/2015: Lack
+of Discriminatory Act"
 "FY
 Rec'd","Summary
 Status","EPA
@@ -1556,6 +1870,15 @@ Safety – Green
 Corr. Inst",07/07/2014,Title VI: Race,"Rejected and Referred
 (DOJ) 5/5/2015: Lack of
 Jurisdiction"
+FY14,Closed,"07A-14-
+R9","North Coast
+Regional Water
+Quality Control
+Board (CA)",06/19/2014,"Age
+Discrimination
+Act: Age
+Title VI: Race","Rejected 6/10/2015:
+Unripe for Investigation"
 "FY
 Rec'd","Summary
 Status","EPA

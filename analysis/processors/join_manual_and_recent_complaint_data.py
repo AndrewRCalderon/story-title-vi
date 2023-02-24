@@ -20,7 +20,7 @@ class JoinComplaintData:
             self.mapped_data,
             self.manual_data,
             how="outer",
-            left_on="epa__file__#",
+            left_on="epa_file_#",
             right_on="epa_complaint_#",
             indicator=True,
         )
@@ -34,9 +34,9 @@ class JoinComplaintData:
         """Filter columns"""
 
         filter_columns = [
-            "fy__rec'd",
-            "summary__status",
-            "epa__file__#",
+            "fy_rec'd",
+            "summary_status",
+            "epa_file_#",
             "named_entity_x",
             "clean_date_received_x",
             "detailed_status",
@@ -50,6 +50,7 @@ class JoinComplaintData:
             "disc_basis_1",
             "disc_basis_2",
             "time_difference",
+            "investigated_not_investigated",
             "manual_final_adjudication_reason",
             "_merge",
         ]

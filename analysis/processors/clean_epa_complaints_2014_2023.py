@@ -20,7 +20,9 @@ class TitleVIDataClean:
         Returns:
             _type_: _description_
         """
+
         data = pd.read_csv(self.file_path)
+        data = data.drop("Unnamed: 7", axis="columns")
 
         return data
 
@@ -44,12 +46,12 @@ class TitleVIDataClean:
         """
 
         expected_columns = [
-            "fy__rec'd",
-            "summary__status",
-            "epa__file__#",
+            "fy_rec'd",
+            "summary_status",
+            "epa_file_#",
             "named_entity",
-            "date__received",
-            "alleged__discrimination__basis",
+            "date_received",
+            "alleged_discrimination_basis",
             "detailed_status",
             "primary_status",
             "referred_agency",
@@ -86,7 +88,7 @@ class TitleVIDataClean:
     def filter_headers(self):
         """_summary_"""
         data_length = len(self.data)
-        repeat_headers = self.data[self.data["fy__rec'd"].str.contains("Rec'd")]
+        repeat_headers = self.data[self.data["fy_rec'd"].str.contains("Rec'd")]
 
         logging.warning(f"Number of repeated headers in data: {len(repeat_headers)}")
 
@@ -129,7 +131,7 @@ class TitleVIDataClean:
             axis="index",
         )
 
-        self.data["epa__file__#"] = self.data["epa__file__#"].str.replace(" ", "")
+        self.data["epa_file_#"] = self.data["epa_file_#"].str.replace(" ", "")
 
         return self
 
@@ -140,7 +142,7 @@ class TitleVIDataClean:
             _type_: _description_
         """
         self.data["clean_date_received"] = pd.to_datetime(
-            self.data["date__received"], errors="coerce"
+            self.data["date_received"], errors="coerce"
         )
 
         if self.data["clean_date_received"].isnull().sum() > 0:
@@ -251,7 +253,7 @@ class TitleVIDataClean:
         """
         discrimination_basis_captures = self.capture_patterns_to_dict(
             self.data,
-            "alleged__discrimination__basis",
+            "alleged_discrimination_basis",
             "clean_alleged_discrimination_basis",
             r".*: (.*)",
             1,
@@ -434,9 +436,9 @@ class TitleVIDataClean:
         """
 
         filter_columns = [
-            "fy__rec'd",
-            "summary__status",
-            "epa__file__#",
+            "fy_rec'd",
+            "summary_status",
+            "epa_file_#",
             "named_entity",
             "clean_date_received",
             "detailed_status",
@@ -469,7 +471,7 @@ def main(file_path: str, output_path: str):
     data = analyzer.load_data()
 
     # Assert that the number of rows is 251
-    assert len(data) == 251, f"Unexpected number of rows in dataframe: ${len(data)}"
+    assert len(data) == 279, f"Unexpected number of rows in dataframe: ${len(data)}"
 
     # Runs all the cleaning functions for the entire class
     data_clean = analyzer.clean_data()

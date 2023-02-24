@@ -36,9 +36,9 @@ class ComplaintDataMap:
     def reorder_columns(self):
         """ """
         reorder_columns = [
-            "fy__rec'd",
-            "summary__status",
-            "epa__file__#",
+            "fy_rec'd",
+            "summary_status",
+            "epa_file_#",
             "named_entity",
             "clean_date_received",
             "detailed_status",

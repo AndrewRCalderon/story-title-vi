@@ -27,7 +27,7 @@ tests:
 
 ##@ Run all
 .PHONY: all
-all: clean-epa-complaints-14-23 analysis/output_data/mapped_epa_complaints_2014_2023.csv
+all: clean-epa-complaints-14-23 analysis/output_data/mapped_epa_complaints_2014_2023.csv analysis/output_data/joined_epa_complaints_2014_2023.csv
 
 ##@ Run processors
 
