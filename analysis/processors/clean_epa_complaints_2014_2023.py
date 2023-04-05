@@ -470,7 +470,7 @@ def main(file_path: str, output_path: str):
     # Load the data
     data = analyzer.load_data()
 
-    # Assert that the number of rows is 251
+    # Assert that the number of rows is 279
     assert len(data) == 279, f"Unexpected number of rows in dataframe: ${len(data)}"
 
     # Runs all the cleaning functions for the entire class
