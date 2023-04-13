@@ -25,9 +25,24 @@ class JoinComplaintData:
             indicator=True,
         )
 
+        merged_data = self.change_column_names(merged_data)
         merged_data = self.filter_columns(merged_data)
 
         return merged_data
+
+    @staticmethod
+    def change_column_names(data: pd.DataFrame):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+        rename_columns_dict = {
+            "clean_date_received_x": "clean_date_received",
+            "named_entity_x": "named_entity",
+        }
+
+        return data.rename(columns=rename_columns_dict)
 
     @staticmethod
     def filter_columns(data: pd.DataFrame):
@@ -37,8 +52,8 @@ class JoinComplaintData:
             "fy_rec'd",
             "summary_status",
             "epa_file_#",
-            "named_entity_x",
-            "clean_date_received_x",
+            "named_entity",
+            "clean_date_received",
             "detailed_status",
             "primary_status",
             "primary_status_map",

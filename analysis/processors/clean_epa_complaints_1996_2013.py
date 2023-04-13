@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import pandas as pd
 import helper_functions.helpers as helpers
 import fire
@@ -94,7 +96,7 @@ class TitleVIDataClean:
         """
         rename_columns_dict = {
             "epa_file_no.": "epa_file_#",
-            "accused_agency": "named_entity_x",
+            "accused_agency": "named_entity",
         }
 
         self.data.rename(columns=rename_columns_dict, inplace=True)
@@ -141,12 +143,34 @@ class TitleVIDataClean:
             self.data["date_ocr_sent_review_response_to_complainant"], inplace=True
         )
 
+    def extract_discrimination_basis(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+
+        # assign clean_alleged_discrimination_basis column to data with captures
+        self.data[
+            [
+                "disc_basis_1",
+                "disc_basis_2",
+                "disc_basis_3",
+                "disc_basis_4",
+                "disc_basis_5",
+            ]
+        ] = self.data["claim_of_discrimination"].str.split(",", expand=True)
+
+        return self
+
     def change_date_format(self):
         """_summary_
 
         Returns:
             _type_: _description_
         """
+        # the "" suffix is to make sure that I can later merge it with the joined data
+        # without having to rename the column
         self.data["clean_date_received"] = pd.to_datetime(
             self.data["date_of_title_vi_complaint"], errors="coerce"
         )
@@ -172,8 +196,6 @@ class TitleVIDataClean:
             self.data["recent_status_date"] - self.data["clean_date_received"]
         ).dt.days
 
-        print(self.data.columns)
-
         return self
 
     def clean_data(self):
@@ -194,6 +216,9 @@ class TitleVIDataClean:
         # create recent_status_date column
         self.create_recent_status_date_column()
 
+        # split discrimination basis column
+        self.extract_discrimination_basis()
+
         # change date format to datetime for date_received and recent_status_date
         self.change_date_format()
 
@@ -203,7 +228,7 @@ class TitleVIDataClean:
         # filter columns to include only the columns for the final analysis
         data = self.filter_columns(self.data)
 
-        # return data
+        return data
 
     @staticmethod
     def filter_columns(data: pd.DataFrame):
@@ -218,10 +243,14 @@ class TitleVIDataClean:
             "clean_date_received",
             "recent_status_date",
             "time_difference",
-            "named_entity_x",
-            "claim_of_discrimination",
+            "named_entity",
             "referred_agency",
             "final_adjudication_&_reason",
+            "disc_basis_1",
+            "disc_basis_2",
+            "disc_basis_3",
+            "disc_basis_4",
+            "disc_basis_5",
         ]
 
         return data[filter_columns]
@@ -250,7 +279,7 @@ def main(file_path: str, output_path: str):
     data_clean = analyzer.clean_data()
 
     # Save the cleaned data to a csv
-    # data_clean.to_csv(output_path, index=False)
+    data_clean.to_csv(output_path, index=False)
 
 
 if __name__ == "__main__":

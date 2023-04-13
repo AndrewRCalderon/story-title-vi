@@ -5,30 +5,43 @@ import fire
 import logging
 
 
-class JoinedDataCPIDataAppender:
+class EpaCpiDataAppender:
     """ """
 
     def __init__(self, joined_data, cpi_data):
         self.joined_data = joined_data
         self.cpi_data = cpi_data
         # self.merged_data = self.merge_data()
-    
 
     def append_data(self):
         """Merge joined_data and cpi_data"""
 
-        concat_data = pd.concat(
-            self.joined_data,
-            self.cpi_data,
-            how="outer",
-            left_on="epa_file_#",
-            right_on="epa_complaint_#",
-            indicator=True,
+        appended_data = pd.concat(
+            [self.joined_data, self.cpi_data],
+            ignore_index=True,
         )
 
-        merged_data = self.filter_columns(merged_data)
+        print(appended_data)
+        # appended_data = self.change_column_names(joined_data)
+        # print(joined_data.columns)
+        # joined_data = self.filter_columns(joined_data)
 
-        return merged_data
+        return appended_data
+
+    @staticmethod
+    def change_column_names(data: pd.DataFrame):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+        new_columns = [
+            column_name.replace("_x", "") for column_name in data.columns.to_list()
+        ]
+
+        data.columns = new_columns
+
+        return data
 
     @staticmethod
     def filter_columns(data: pd.DataFrame):
@@ -38,8 +51,8 @@ class JoinedDataCPIDataAppender:
             "fy_rec'd",
             "summary_status",
             "epa_file_#",
-            "named_entity_x",
-            "clean_date_received_x",
+            "named_entity",
+            "clean_date_received",
             "detailed_status",
             "primary_status",
             "primary_status_map",
@@ -50,20 +63,25 @@ class JoinedDataCPIDataAppender:
             "referred_agency",
             "disc_basis_1",
             "disc_basis_2",
+            "disc_basis_3",
+            "disc_basis_4",
+            "disc_basis_5",
             "time_difference",
+            "final_adjudication_&_reason",
             "investigated_not_investigated",
             "manual_final_adjudication_reason",
             "_merge",
+            "_merge_epa_cpi",
         ]
 
         data = data[filter_columns]
 
         return data
 
-class JoinedDataCPIDataMapper:
-    """_summary_
-    """
-    
+
+class CPIDataMapper:
+    """_summary_"""
+
     def map_new_primary_status_to_cpi_statuses(self):
         """_summary_"""
 
@@ -73,7 +91,8 @@ class JoinedDataCPIDataMapper:
             "administrative closure": r"^Closed - Withdrawn|",
             "pending": r"Pending",
             "resolved": r"^Closed - Agreement|^Closed - Informally Resolved|^Closed - Settlement",
-            "": r".*"}
+            "": r".*",
+        }
 
         self.data["primary_status_map"] = self.data["primary_status"].apply(
             lambda x: [k for k, v in mapping.items() if re.match(v, str(x))][0]
@@ -92,9 +111,11 @@ def main(file_path1: str, file_path2: str, output_path: str):
     mapped_data = pd.read_csv(file_path1)
     manual_data = pd.read_csv(file_path2)
 
-    merged_data = JoinComplaintData(mapped_data, manual_data).merged_data
+    concat_data = EpaCpiDataAppender(mapped_data, manual_data).append_data()
 
-    merged_data.to_csv(output_path, index=False)
+    # merged_data = JoinedDataCPIDataAppender(mapped_data, manual_data).merged_data
+
+    concat_data.to_csv(output_path, index=False)
 
 
 if __name__ == "__main__":
