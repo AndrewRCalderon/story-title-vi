@@ -40,7 +40,7 @@ class EpaCpiDataAppender:
             "detailed_status",
             "primary_status",
             "primary_status_map",
-            "clean_current_status",
+            "final_adjudication_&_reason",
             "secondary_status",
             "clean_current_status_reason",
             "recent_status_date",
@@ -51,7 +51,6 @@ class EpaCpiDataAppender:
             "disc_basis_4",
             "disc_basis_5",
             "time_difference",
-            "final_adjudication_&_reason",
             "investigated_not_investigated",
             "manual_final_adjudication_reason",
             "_merge",
@@ -66,16 +65,16 @@ class EpaCpiDataAppender:
         """_summary_"""
 
         mapping = {
-            "rejected": r"^Dismissed - Moot|^Dismissed Without Prejudice|^Dismissed without prejudice; Denied - Untimely|^Dismissed without prejudice; Denied - Financial|^Dismissed without prejudice|^Denied - Untimely Claims|^Denied- Claims|^Denied - Untimely Litigation|^Dismissed|^Denied - Untimely|^Denied - Moot|^Denied - Financial|^Denied|^Denied - Claim|^Denied - Claims|^Denied - Claims Untimely|^Denied - Financial  Untimely|^Denied - Financial Claims",
-            "rejected & referred": r"^Denied - Financial; Referred|^Closed - Referred|^Denied - Claim \(referred\)|^Denied - Claims Referred|^Denied - Referred |^Denied - Financial Referred|^Denied - Financial Untimely Claims",
-            "administrative closure": r"^Closed - Withdrawn|",
+            "rejected": r"^Denied - Financial, Untimely|^Denied - Untimely, Claims|^Denied - Financial|^Denied|^Denied - Financial,  Untimely|^Denied - Untimely, Litigation|^Denied - Financial, Claims|^Denied - Financial, Untimely, Claims|^Dismissed - Moot|^Dismissed Without Prejudice|^Dismissed without prejudice; Denied - Untimely|^Dismissed without prejudice; Denied - Financial|^Dismissed without prejudice|^Denied - Untimely Claims|^Denied- Claims|^Denied - Untimely Litigation|^Dismissed|^Denied - Untimely|^Denied - Moot|^Denied - Financial|^Denied|^Denied - Claim|^Denied - Claims|^Denied - Claims Untimely|^Denied - Financial  Untimely|^Denied - Financial Claims",
+            "rejected & referred": r"Denied - Financial;Referred|^Denied - Financial, Referred|^Denied - Financial; Referred|^Closed - Referred|^Denied - Claim \(referred\)|^Denied - Claims Referred|^Denied - Claims, Referred|^Denied - Referred |^Denied - Financial Referred|^Denied - Financial Untimely Claims",
+            "administrative closure": r"^Closed - Withdrawn",
             "pending": r"Pending",
             "resolved": r"^Closed - Agreement|^Closed - Informally Resolved|^Closed - Settlement",
             "": r".*",
         }
 
-        data["primary_status"] = data["final_adjudication_&_reason"].apply(
-            lambda x: [k for k, v in mapping.items() if re.match(v, str(x))][0]
+        data["primary_status_map"] = data["final_adjudication_&_reason"].apply(
+            lambda x: [k for k, v in mapping.items() if re.fullmatch(v, str(x))][0]
         )
 
         return data
