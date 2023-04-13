@@ -3,6 +3,7 @@
 import pandas as pd
 import fire
 import logging
+import re
 
 
 class EpaCpiDataAppender:
@@ -11,37 +12,20 @@ class EpaCpiDataAppender:
     def __init__(self, joined_data, cpi_data):
         self.joined_data = joined_data
         self.cpi_data = cpi_data
-        # self.merged_data = self.merge_data()
 
     def append_data(self):
         """Merge joined_data and cpi_data"""
+
+        self.cpi_data = self.map_new_primary_status_to_cpi_statuses(self.cpi_data)
 
         appended_data = pd.concat(
             [self.joined_data, self.cpi_data],
             ignore_index=True,
         )
 
-        print(appended_data)
-        # appended_data = self.change_column_names(joined_data)
-        # print(joined_data.columns)
-        # joined_data = self.filter_columns(joined_data)
+        appended_data = self.filter_columns(appended_data)
 
         return appended_data
-
-    @staticmethod
-    def change_column_names(data: pd.DataFrame):
-        """_summary_
-
-        Returns:
-            _type_: _description_
-        """
-        new_columns = [
-            column_name.replace("_x", "") for column_name in data.columns.to_list()
-        ]
-
-        data.columns = new_columns
-
-        return data
 
     @staticmethod
     def filter_columns(data: pd.DataFrame):
@@ -71,18 +55,14 @@ class EpaCpiDataAppender:
             "investigated_not_investigated",
             "manual_final_adjudication_reason",
             "_merge",
-            "_merge_epa_cpi",
         ]
 
         data = data[filter_columns]
 
         return data
 
-
-class CPIDataMapper:
-    """_summary_"""
-
-    def map_new_primary_status_to_cpi_statuses(self):
+    @staticmethod
+    def map_new_primary_status_to_cpi_statuses(data: pd.DataFrame):
         """_summary_"""
 
         mapping = {
@@ -94,11 +74,9 @@ class CPIDataMapper:
             "": r".*",
         }
 
-        self.data["primary_status_map"] = self.data["primary_status"].apply(
+        data["primary_status"] = data["final_adjudication_&_reason"].apply(
             lambda x: [k for k, v in mapping.items() if re.match(v, str(x))][0]
         )
-
-        data = self.reorder_columns()
 
         return data
 
@@ -111,11 +89,9 @@ def main(file_path1: str, file_path2: str, output_path: str):
     mapped_data = pd.read_csv(file_path1)
     manual_data = pd.read_csv(file_path2)
 
-    concat_data = EpaCpiDataAppender(mapped_data, manual_data).append_data()
+    appended_data = EpaCpiDataAppender(mapped_data, manual_data).append_data()
 
-    # merged_data = JoinedDataCPIDataAppender(mapped_data, manual_data).merged_data
-
-    concat_data.to_csv(output_path, index=False)
+    appended_data.to_csv(output_path, index=False)
 
 
 if __name__ == "__main__":
