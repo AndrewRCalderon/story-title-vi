@@ -150,6 +150,11 @@ class TitleVIDataClean:
             _type_: _description_
         """
 
+        # make all values lowercase
+        self.data["claim_of_discrimination"] = self.data[
+            "claim_of_discrimination"
+        ].str.lower()
+
         # assign clean_alleged_discrimination_basis column to data with captures
         self.data[
             [

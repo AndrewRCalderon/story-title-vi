@@ -166,8 +166,8 @@ class TitleVIDataClean:
             self.data,
             "detailed_status",
             "primary_status",
-            r"^(.*?)\d{1,2}/\d{1,2}/\d{4}[: ]|(.*):",
-            2,
+            r"^(.*?)\d{1,2}/\d{1,2}/\d{4}[;: ]|(.*):|(^resolved|^techincal)",
+            3,
         )
 
         # assign primary_status column to data with captures

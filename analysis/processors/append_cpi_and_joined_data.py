@@ -13,9 +13,18 @@ class EpaCpiDataAppender:
         self.joined_data = joined_data
         self.cpi_data = cpi_data
 
+    def flag_dfs(self):
+        """Flag df"""
+
+        self.joined_data["origin"] = "epa"
+        self.cpi_data["origin"] = "cpi"
+
     def append_data(self):
         """Merge joined_data and cpi_data"""
 
+        # add a column to each dataframe that indicates the origin of the data
+        self.flag_dfs()
+        # map the new primary status to the cpi statuses
         self.cpi_data = self.map_new_primary_status_to_cpi_statuses(self.cpi_data)
 
         appended_data = pd.concat(
@@ -26,6 +35,16 @@ class EpaCpiDataAppender:
         appended_data = self.filter_columns(appended_data)
 
         return appended_data
+
+    @staticmethod
+    def clean_data(data):
+        """Clean data"""
+
+        data = data.dropna(subset=["epa_file_#"])
+
+        assert len(data) == 515, "Data is not the correct length"
+
+        return data
 
     @staticmethod
     def filter_columns(data: pd.DataFrame):
@@ -54,6 +73,7 @@ class EpaCpiDataAppender:
             "investigated_not_investigated",
             "manual_final_adjudication_reason",
             "_merge",
+            "origin",
         ]
 
         data = data[filter_columns]
@@ -62,7 +82,14 @@ class EpaCpiDataAppender:
 
     @staticmethod
     def map_new_primary_status_to_cpi_statuses(data: pd.DataFrame):
-        """_summary_"""
+        """_summary_
+
+        Args:
+            data (pd.DataFrame): _description_
+
+        Returns:
+            _type_: _description_
+        """
 
         mapping = {
             "rejected": r"^Denied - Claims, Untimely|^Denied - Financial, Claims, Untimely|^Denied - Financial, Untimely|^Denied - Untimely, Claims|^Denied - Financial|^Denied|^Denied - Financial, Untimely|^Denied - Untimely, Litigation|^Denied - Financial, Claims|^Denied - Financial, Untimely, Claims|^Dismissed - Moot|^Dismissed Without Prejudice|^Dismissed without prejudice; Denied - Untimely|^Dismissed without prejudice; Denied - Financial|^Dismissed without prejudice|^Denied - Untimely Claims|^Denied- Claims|^Denied - Untimely Litigation|^Dismissed|^Denied - Untimely|^Denied - Moot|^Denied - Financial|^Denied|^Denied - Claim|^Denied - Claims|^Denied - Claims Untimely|^Denied - Financial  Untimely|^Denied - Financial Claims",
@@ -94,7 +121,9 @@ def main(file_path1: str, file_path2: str, output_path: str):
 
     appended_data = EpaCpiDataAppender(mapped_data, manual_data).append_data()
 
-    appended_data.to_csv(output_path, index=False)
+    cleaned_data = EpaCpiDataAppender.clean_data(appended_data)
+
+    cleaned_data.to_csv(output_path, index=False)
 
 
 if __name__ == "__main__":
