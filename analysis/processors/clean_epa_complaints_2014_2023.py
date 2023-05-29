@@ -166,7 +166,7 @@ class TitleVIDataClean:
             self.data,
             "detailed_status",
             "primary_status",
-            r"^(.*?)\d{1,2}/\d{1,2}/\d{4}[;: ]|(.*):|(^resolved|^techincal)",
+            r"^(.*?)\d{1,2}/\d{1,2}/\d{4}[;: ]|(.*):|(^resolved|^technical)",
             3,
         )
 

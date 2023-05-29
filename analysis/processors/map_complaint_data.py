@@ -22,6 +22,7 @@ class ComplaintDataMap:
             "administrative closure": r"^admin|^accepted and admin.*",
             "pending": r"^pending.*",
             "resolved": r"^resolved.*",
+            "technical assistance": r"^technical.*",
             "": r".*",
         }
 
