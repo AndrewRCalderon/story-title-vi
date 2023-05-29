@@ -5,17 +5,11 @@
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
 3. [Prerequisites](#prerequisites)
-4. [Installation](#installation)
-5. [Usage](#usage)
-6. [Project Structure](#project-structure)
-7. [Testing](#testing)
-8. [Deployment](#deployment)
-9. [Built With](#built-with)
-10. [Contributing](#contributing)
-11. [Versioning](#versioning)
-12. [Authors](#authors)
-13. [License](#license)
-14. [Acknowledgments](#acknowledgments)
+4. [Usage](#usage)
+5. [Project Structure](#project-structure)
+6. [Testing](#testing)
+7. [Authors](#authors)
+8. [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
@@ -46,11 +40,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-- Software requirements, dependencies, and how to install them.
-
-## Installation
-
-- Step by step series of examples that tell you how to get a development environment running.
+- Python 3.7
+- Pipenv
+- Make
 
 ## Usage
 
@@ -64,29 +56,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Explain how to run the automated tests for this system.
 
-## Deployment
-
-- Add additional notes about how to deploy this on a live system.
-
-## Built With
-
-- List of any major frameworks used in the project.
-
-## Contributing
-
-- Details on how to contribute to the project, the process for submitting pull requests.
-
-## Versioning
-
-- Information about the versioning methodology used.
-
 ## Authors
 
 - List of contributors who participated in this project.
-
-## License
-
-- Information about the license.
 
 ## Acknowledgments
 
