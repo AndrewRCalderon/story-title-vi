@@ -1,0 +1,8 @@
+{
+  "makefile.extensionOutputFolder": "./.vscode",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "python.analysis.typeCheckingMode": "basic"
+}
