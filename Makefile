@@ -21,14 +21,6 @@ clean:
 clean/source_data: 
 	rm -rf analysis/source_data/*
 
-##@ Run processors
-
-# clean-epa-complaints-14-21: analysis/source_data/epa-complaints-2014-2021.csv
-# 	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2021.py --file_path=$<
-
-# clean-epa-complaints-14-22: analysis/source_data/epa-complaints-2014-2022-7-8.csv
-# 	${PIPENV} python analysis/processors/clean_epa_complaints_2014_2022.py
-
 ##@ Pipeline for 1996-2013 & 2014-2023 data
 clean-epa-complaints-14-23: analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv
 	${PYENV} python analysis/processors/clean_epa_complaints_2014_2023.py --file_path=$< --output_path='analysis/output_data/epa_complaints_2014_2023.csv'
