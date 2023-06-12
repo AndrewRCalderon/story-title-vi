@@ -146,6 +146,14 @@ As we have deepended our reporting, Jamie, Yvette, Grey and I have considered va
 
 - Andrew & Grey had initially processed some data manually but Jamie also did the same thing and added new fields. So at this point, I think that it makes more sense to replace our manual data with hers. This change will show up in the Git history but won't be evident to someone closing the repo after the fact.
 
+- CPI published its original [methodology](https://publicintegrity.org/environment/how-we-acquired-and-analyzed-data-for-environmental-justice-denied/) where they describe the categorization of the data. The EPA published some [data](https://web.archive.org/web/20140710070743/http://www2.epa.gov/ocr/complaints-filed-epa-under-title-vi-civil-rights-act-1964) about environmental justice complaints, but CPI noticed discrepancies and requested all of the underlying documents. CPI notes in their methodology that "when calculating how long cases took to wind through the review process, the Center omitted those that were pending, so as not to skew the results."
+
+## Action Items
+
+- [ ] Jamie wants us to compare cases in the data from the 2015 investigation to the 2023 data to see which ones were open, and what changes.
+
+- [ ] Re-run analysis that compares what the data looks like when we treat each row as a case vs when we consolidate related cases using the "highest level of action from the EPA" as the final case status.
+
 ## Authors
 
 - Andrew Rodriguez Calderon, Computational Journalist
