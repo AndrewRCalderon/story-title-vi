@@ -12,7 +12,8 @@
 8. [Data](#data)
 9. [Analysis](#analysis)
 10. [Review](#review)
-11. [Acknowledgments](#acknowledgments)
+11. [Editor's Notes](#editors-notes)
+12. [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
@@ -132,6 +133,18 @@ For reviewers, the most important files to review are scripts in processors. Tho
 I didn't have time to make the tests robust, so I would not assume that those are shoring up our pipeline. I did however sprinkle in some assert statements to make sure that the data is being transformed as expected, but it's possible that I missed something.
 
 So for the review, the two crucial pieces of the codebase to verify are the logic of the processors and the interpretation of the mapping of the data itself.
+
+## Editor's Notes
+
+As we have deepended our reporting, Jamie, Yvette, Grey and I have considered various themes and angles to pursue. We have also started to note holes in the data and caveats to bear in mind. I am including those notes here for reference.
+
+- The EPA is regularly updating the data. So we must frequently check for updates and re-run the ETL process. We should also consider how to handle the data updates in the Observable notebook.
+
+- The EPA consolidates some of its cases, meaning that a single row can actually stand is for multiple complaints. Jamie decided to handle this manually by flagging singular and multifaceted complaints after a review of the original case files. When the cases were not split, she then flagged the final case status based on the "highest level of action from the EPA." She notes that "we should be mindful of later status updates, because in some cases this might change which complaint to count as the unique one."
+
+- There are cases in the EPA data that are not properly environmental justice complaints. Jamie notes that we should make this distinction to ensure that we are counting only environmental justice complaints.
+
+- Andrew & Grey had initially processed some data manually but Jamie also did the same thing and added new fields. So at this point, I think that it makes more sense to replace our manual data with hers. This change will show up in the Git history but won't be evident to someone closing the repo after the fact.
 
 ## Authors
 
