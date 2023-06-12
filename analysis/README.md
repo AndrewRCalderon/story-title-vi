@@ -40,26 +40,67 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-- Python 3.7
+- Python 3.9
 - Pipenv
 - Make
 
 ## Usage
 
-- A few examples of useful commands or tasks.
+The most useful commands are in the Makefile. The following commands are available:
+
+- `make all` - runs the entire ETL process without tests
+- `make clean` - removes all the files created by the ETL process
+- `make tests` - runs the tests
+
+For the compository commands see the Makefile.
 
 ## Project Structure
 
-- Description of the layout of the project, what each folder/file does, and how they are connected.
+The file structure is as follows:
+
+```
+├── analysis
+│   ├── README.md
+│   ├── helper_functions
+│   │   └── helpers.py
+│   ├── cpi
+│   │   ├── cpi.csv
+│   │   └── cpi.xlsx
+│   ├── epa
+│   │    ├── epa.csv
+│   │    └── epa.xlsx
+│   ├── output_data
+│   │   ├── __init__.py
+│   │   ├── clean.py
+│   │   ├── load.py
+│   │   └── transform.py
+│   ├── source_data
+│   │   ├── cpi_data
+│   │   │   └── epa-complaints-1996-2013.csv
+│   │   ├── epa_data
+│   │   │    ├── epa_ecrco_complaints_2014_2023_2_9.csv
+│   │   │    └── epa-complaints-2014-2022-7-8.csv
+│   │   ├── source_data
+│   └── tests
+│       ├── __init__.py
+│       └── processors
+│           ├── __init__.py
+│           └── test_complaints.py
+├── Makefile
+├── Pipfile
+├── Pipfile.lock
+```
 
 ## Testing
 
-- Explain how to run the automated tests for this system.
+To run the tests, run the following command:
+
+```
+make tests
+```
 
 ## Authors
 
-- List of contributors who participated in this project.
-
-## Acknowledgments
-
-- Any acknowledgments, if necessary.
+- Andrew Rodriguez Calderon, Computational Journalist
+- Grey Moran
+  ...

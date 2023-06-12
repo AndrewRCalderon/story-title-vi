@@ -5,29 +5,21 @@ PYENV=pipenv run
 
 
 ##@ Basic Usage
-.PHONY: clean
-clean: clean/source_data clean/output_data
-
-.PHONY: processors
-processors: analysis/output_data/data_complaint_logs_titlevi.csv analysis/output_data/mapped_data_complaint_logs_titlevi.csv
-
-
-##@ Clean-up
-.PHONY: clean/source_data
-clean/source_data: 
-	rm -rf analysis/source_data/*
-
-.PHONY: clean/output_data
-clean/output_data: 
+.PHONY: all
+all: clean-epa-complaints-14-23 analysis/output_data/mapped_epa_complaints_2014_2023.csv analysis/output_data/joined_epa_complaints_2014_2023.csv
 	rm -rf analysis/output_data/*
 
 .PHONY: tests
 tests:
 	${PYENV} pytest
+	
+##@ Clean-up
+.PHONY: clean
+clean:
 
-##@ Run all
-.PHONY: all
-all: clean-epa-complaints-14-23 analysis/output_data/mapped_epa_complaints_2014_2023.csv analysis/output_data/joined_epa_complaints_2014_2023.csv
+.PHONY: clean/source_data
+clean/source_data: 
+	rm -rf analysis/source_data/*
 
 ##@ Run processors
 
