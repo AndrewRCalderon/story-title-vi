@@ -17,9 +17,8 @@ class ComplaintDataMap:
         """_summary_"""
 
         mapping = {
-            "rejected": r"^rejected$|not accepted.*|^rejected/closed|^rejected and closed|^rejected 5|^rejected/admin.*|^rejected without prejudice",
-            "rejected & referred": r"^rejected.*referred.*|^referred.*",
-            "administrative closure": r"^admin|^accepted and admin.*",
+            "rejected": r"^rejected$|^rejected and closed.*|^not accepted.*|^rejected 5|^rejected/admin.*|^rejected without prejudice|^rejected w/o prejudice|^administratively clo.*|^admin closure$|^rejected/closed.*|",
+            "rejected & referred": r"^admin closure/referral|^rejected.*referred.*|^referred.*",
             "pending": r"^pending.*",
             "resolved": r"^resolved.*",
             "technical assistance": r"^technical.*",
