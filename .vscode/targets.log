@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Sun Jun  4 15:41:07 2023
+# Make data base, printed on Sun Jun 25 14:21:53 2023
 
 # Variables
 
@@ -44,19 +44,17 @@ PATH = /Users/AndrewRCalderon/.pyenv/shims:/Users/AndrewRCalderon/.nodenv/shims:
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-LaunchInstanceID = C7A725A7-99FB-436B-A256-E6C8C5CAFD59
-# environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
 PYENV_ROOT = /Users/AndrewRCalderon/.pyenv
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.wsdltZQWf3/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QdggcEoOfq/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = /private/tmp/com.apple.launchd.koMEUjgwdi/org.macosforge.xquartz:0
+DISPLAY = /private/tmp/com.apple.launchd.FrtOM8t5eq/org.macosforge.xquartz:0
 # environment
 PWD = /Users/AndrewRCalderon/Desktop/projects/story-title-vi
 # environment
@@ -70,11 +68,11 @@ HOME = /Users/AndrewRCalderon
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/AndrewRCalderon/Library/Application Support/Code/CachedData/b3e4e68a0bc097f0ae7907b217c1119af9e03435
+VSCODE_CODE_CACHE_PATH = /Users/AndrewRCalderon/Library/Application Support/Code/CachedData/695af097c7bd098fbf017ce3ac85e09bbc5dda06
 # environment
 LOGNAME = AndrewRCalderon
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 ZSH = /Users/AndrewRCalderon/.oh-my-zsh
 # environment
@@ -89,8 +87,6 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# environment
-VSCODE_CRASH_REPORTER_SANDBOXED_HINT = 1
 # default
 MAKE_VERSION := 3.81
 # environment
@@ -110,7 +106,7 @@ TMPDIR = /var/folders/vx/gxxhdlzj63xctvmhpp5dzd040000gp/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/AndrewRCalderon/Library/Application Support/Code/1.78-main.sock
+VSCODE_IPC_HOOK = /Users/AndrewRCalderon/Library/Application Support/Code/1.79-main.sock
 # environment
 MallocNanoZone = 0
 # makefile (from `.env', line 1)
@@ -122,7 +118,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.12903211714.12903211720
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.12904363464.12904363470
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from `Makefile', line 4)
@@ -143,8 +139,6 @@ MAKEFILES :=
 PAGER = less
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186a4
 # automatic
 ^F = $(notdir $^)
 # default
@@ -156,9 +150,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1507
+VSCODE_PID = 2734
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=2/102=2%
+# Load=70/1024=7%, Rehash=0, Collisions=2/99=2%
 
 # Pattern-specific Variable Values
 
@@ -166,9 +160,9 @@ VSCODE_PID = 1507
 
 # Directories
 
-# . (device 16777220, inode 63466167): 14 files, no impossibilities.
+# . (device 16777220, inode 63466167): 13 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -212,7 +206,7 @@ tests:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-05-29 14:40:08
+#  Last modified 2023-06-11 22:04:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -222,7 +216,7 @@ analysis/output_data/mapped_epa_complaints_2014_2023.csv: analysis/output_data/e
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 40):
+#  commands to execute (from `Makefile', line 32):
 	${PYENV} python analysis/processors/map_complaint_data.py --file_path=$< --output_path=$@
 	
 
@@ -236,7 +230,7 @@ analysis/output_data/joined_epa_complaints_2014_2023.csv: analysis/output_data/m
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 35):
 	${PYENV} python analysis/processors/join_manual_and_recent_complaint_data.py $^ --output_path=$@
 	
 
@@ -269,7 +263,7 @@ analysis/output_data/appended_epa_complaints_1996_2023.csv: analysis/output_data
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 46):
+#  commands to execute (from `Makefile', line 38):
 	${PYENV} python analysis/processors/append_cpi_and_joined_data.py $^ --output_path=$@
 	
 
@@ -279,11 +273,11 @@ analysis/output_data/epa_cpi_complaints_1996_2013.csv:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 clean-epa-complaints-14-23: analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: `'
 #  File does not exist.
+ 
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -304,7 +298,7 @@ clean-epa-complaints-14-23: analysis/source_data/epa_data/epa_ecrco_complaints_2
 # ? := analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/12=8%
-#  commands to execute (from `Makefile', line 34):
+#  commands to execute (from `Makefile', line 26):
 	${PYENV} python analysis/processors/clean_epa_complaints_2014_2023.py --file_path=$< --output_path='analysis/output_data/epa_complaints_2014_2023.csv'
 	
 
@@ -318,7 +312,7 @@ clean-epa-complaints-96-13: analysis/source_data/cpi_data/epa-complaints-1996-20
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 37):
+#  commands to execute (from `Makefile', line 29):
 	${PYENV} python analysis/processors/clean_epa_complaints_1996_2013.py --file_path=$< --output_path='analysis/output_data/epa_cpi_complaints_1996_2013.csv'
 	
 
@@ -356,6 +350,6 @@ analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4082 / max = 4082 / min = 4082 / avg = 4082
 
-# Finished Make data base on Sun Jun  4 15:41:07 2023
+# Finished Make data base on Sun Jun 25 14:21:53 2023
 
  

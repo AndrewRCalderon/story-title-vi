@@ -9,11 +9,13 @@
 5. [Project Structure](#project-structure)
 6. [Testing](#testing)
 7. [Authors](#authors)
-8. [Data](#data)
-9. [Analysis](#analysis)
-10. [Review](#review)
-11. [Editor's Notes](#editors-notes)
-12. [Acknowledgments](#acknowledgments)
+8. [Source Data](#source-data)
+9. [Output Data](#output-data)
+10. [Data Dictionary](#data-dictionary)
+11. [Analysis](#analysis)
+12. [Review](#review)
+13. [Editor's Notes](#editors-notes)
+14. [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
@@ -67,12 +69,6 @@ The file structure is as follows:
 │   ├── README.md
 │   ├── helper_functions
 │   │   └── helpers.py
-│   ├── cpi
-│   │   ├── cpi.csv
-│   │   └── cpi.xlsx
-│   ├── epa
-│   │   ├── epa.csv
-│   │   └── epa.xlsx
 │   ├── output_data
 │   │   ├── __init__.py
 │   │   ├── clean.py
@@ -88,8 +84,9 @@ The file structure is as follows:
 │   │   ├── cpi_data
 │   │   │   └── epa-complaints-1996-2013.csv
 │   │   ├── epa_data
-│   │   │   ├── epa_ecrco_complaints_2014_2023_2_9.csv
-│   │   │   └── epa-complaints-2014-2022-7-8.csv
+│   │   │   ├── source_pdf
+│   │   │   │   └── External Civil Rights Docket, 2014-Present _ US EPA.pdf
+│   │   │   └── epa_ecrco_complaints_2014_2023_2_9.csv
 │   ├── manual_data
 │   │   └── manual_process_complaint_data_2014_2022.csv
 │   └── tests
@@ -110,15 +107,54 @@ To run the tests, run the following command:
 make tests
 ```
 
-## Data
+## Source Data
 
 We have Title VI complaint logs from the Evironmental Protection Agency (EPA) from multiple sources:
 
 1. Complaints from Sept. 1996 to Dec. 2013 stored in `analysis/source_data/cpi_data/epa-complaints-1996-2013.csv` that CPI received via FOIA for their initial investigation.
 
-2. Complaints from Jan. 2014 to Feb. 9, 2023 that Andrew & Grey pulled from the EPA website stored in `analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv`
+2. Complaints from Jan. 2014 to June. 13, 2023 that we pulled from the [EPA website](https://www.epa.gov/external-civil-rights/external-civil-rights-docket-2014-present) and converted using Tabula are stored in `analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv`.
 
-3. Complaints from Jan. 2014 to 2022 that Andrew & Grey manually verified as a testing dataset stored in `analysis/source_data/manual_data/manual_process_complaint_data_2014_2022.csv`
+The original PDF is in `analysis/source_data/epa_data/source_pdf/External Civil Rights Docket, 2014-Present _ US EPA.pdf`.
+
+3. Complaints from Jan. 2014 to 2023 that Jamie manually verified as a testing dataset stored in `analysis/source_data/manual_data/manual_process_complaint_data_2014_2023.csv`
+
+## Output Data
+
+TBD
+
+## Data Dictonary
+
+There are categories that the EPA uses to categorize the data. The way that the EPA write them into the data isn't always consistent.
+
+The following is a list of those categories removing some of the inconsistencies:
+
+- **Rejected** - The unique identifier for the complaint.
+
+  - **Lack of jurisdiction** - The date the complaint was closed.
+  - **Lack of timely discriminatory act** - The date the complaint was closed.
+  - **Converted to compliance review** - The date the complaint was closed.
+  - **Allegations insuffieciently grounded in fact** - The date the complaint was closed.
+
+- **Rejected without prejudice** - The date the complaint was filed.
+  - **Not ripe for review**
+- **Rejected and Closed** - The date the complaint was closed.
+  - **ADR Settlment**
+- **Rejected and Admin Closure** - The date the complaint was closed.
+- **Pending** - The type of complaint.
+  - **Under jusrisditional review** - The date the complaint was closed.
+  - **Under investigation** - The date the complaint was closed.
+  - **Information resolution negotiation** - The date the complaint was closed.
+- **Admin Closure** - The date the complaint was filed.
+  - **Complaint withdrawn** - The date the complaint was closed
+- **Rejected and Referred** - The date the complaint was closed.
+  - **Lack of jurisdiction** - The date the complaint was closed.
+- **Not Accepted for Investigation** - The date the complaint was closed.
+- **Resolved** - The date the complaint was closed.
+  - **Through informal resolution Agreement** - The date the complaint was closed.
+- **Technical Assistance to Recipient**
+
+In `analysis/processors/map_complaint_data.py` we map these categories into simpler categories that allow for analysis.
 
 ## Analysis
 
@@ -150,9 +186,13 @@ As we have deepended our reporting, Jamie, Yvette, Grey and I have considered va
 
 ## Action Items
 
+- [ ] Bring in new data from Jamie's manual processing and replace it with Greta & Andrew's manual processing.
+
 - [ ] Jamie wants us to compare cases in the data from the 2015 investigation to the 2023 data to see which ones were open, and what changes.
 
 - [ ] Re-run analysis that compares what the data looks like when we treat each row as a case vs when we consolidate related cases using the "highest level of action from the EPA" as the final case status.
+
+- [ ] Put together a list of findings to run by the EPA
 
 ## Authors
 
