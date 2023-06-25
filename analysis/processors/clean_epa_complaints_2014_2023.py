@@ -446,6 +446,7 @@ class TitleVIDataClean:
             "disc_basis_1",
             "disc_basis_2",
             "time_difference",
+            "related_documents",
         ]
 
         return data[filter_columns]

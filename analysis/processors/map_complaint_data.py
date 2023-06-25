@@ -17,10 +17,11 @@ class ComplaintDataMap:
         """_summary_"""
 
         mapping = {
-            "rejected": r"^rejected$|^rejected and closed.*|^not accepted.*|^rejected 5|^rejected/admin.*|^rejected without prejudice|^rejected w/o prejudice|^administratively clo.*|^admin closure$|^rejected/closed.*|",
-            "rejected & referred": r"^admin closure/referral|^rejected.*referred.*|^referred.*",
+            "rejected": r"^rejected$|^rejected and closed.*|^not accepted.*|^rejected 5|^rejected/admin.*|^rejected without prejudice|^rejected w/o prejudice|^administratively clos.*|^admin closure |^rejected/closed.*",
+            "rejected and referred": r"^admin closure/referral|^rejected.*referred.*|^referred.*",
             "pending": r"^pending.*",
             "resolved": r"^resolved.*",
+            "accepted and closed": r"^accepted.*admin closure",
             "technical assistance": r"^technical.*",
             "": r".*",
         }
@@ -50,6 +51,7 @@ class ComplaintDataMap:
             "disc_basis_1",
             "disc_basis_2",
             "time_difference",
+            "related_documents",
         ]
 
         data = self.data[reorder_columns]
