@@ -10,7 +10,8 @@ import logging
 class TitleVIDataClean:
     """Class that handles cleaning EPA Complaints data from 2014 to 2023-02-09"""
 
-    def __init__(self, file_path):
+    def __init__(self, file_path: str, recent_status_date: str):
+        self.RECENT_STATUS_DATE = recent_status_date
         self.file_path = file_path
         self.data = self.load_data()
 
@@ -22,7 +23,7 @@ class TitleVIDataClean:
         """
 
         data = pd.read_csv(self.file_path)
-        data = data.drop("Unnamed: 7", axis="columns")
+        # data = data.drop("Unnamed: 7", axis="columns")
 
         return data
 
@@ -224,7 +225,22 @@ class TitleVIDataClean:
         # assign secondary_status column to data with captures
         self.data = self.data.assign(**date_captures)
 
+        # fill null values in recent_status_date column
+        self.data.recent_status_date = self.fill_recent_status_date()
+
         return self
+
+    def fill_recent_status_date(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+        self.data["recent_status_date"] = self.data["recent_status_date"].fillna(
+            self.RECENT_STATUS_DATE
+        )
+
+        return self.data["recent_status_date"]
 
     def extract_referrals(self):
         """_summary_
@@ -454,7 +470,7 @@ class TitleVIDataClean:
         return data[filter_columns]
 
 
-def main(file_path: str, output_path: str):
+def main(file_path: str, output_path: str, recent_status_date: str):
     """
     Calls TitleVIDataClean class to clean data. Outputs cleaned data to csv.
 
@@ -465,13 +481,13 @@ def main(file_path: str, output_path: str):
         None
     """
     # Instantiate an instance of TitleVIDataClean
-    analyzer = TitleVIDataClean(file_path)
+    analyzer = TitleVIDataClean(file_path, recent_status_date)
 
     # Load the data
     data = analyzer.load_data()
 
-    # Assert that the number of rows is 279
-    assert len(data) == 279, f"Unexpected number of rows in dataframe: ${len(data)}"
+    # Assert that the number of rows is 275
+    assert len(data) == 275, f"Unexpected number of rows in dataframe: ${len(data)}"
 
     # Runs all the cleaning functions for the entire class
     data_clean = analyzer.clean_data()
