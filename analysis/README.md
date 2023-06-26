@@ -84,11 +84,9 @@ The file structure is as follows:
 │   │   ├── cpi_data
 │   │   │   └── epa-complaints-1996-2013.csv
 │   │   ├── epa_data
-│   │   │   ├── source_pdf
-│   │   │   │   └── External Civil Rights Docket, 2014-Present _ US EPA.pdf
 │   │   │   └── epa_ecrco_complaints_2014_2023_2_9.csv
-│   ├── manual_data
-│   │   └── manual_process_complaint_data_2014_2022.csv
+│   │   └── manual_data
+│   │       └── manual_process_complaint_data_2014_2022.csv
 │   └── tests
 │       ├── __init__.py
 │       └── processors
@@ -113,9 +111,7 @@ We have Title VI complaint logs from the Evironmental Protection Agency (EPA) fr
 
 1. Complaints from Sept. 1996 to Dec. 2013 stored in `analysis/source_data/cpi_data/epa-complaints-1996-2013.csv` that CPI received via FOIA for their initial investigation.
 
-2. Complaints from Jan. 2014 to June. 13, 2023 that we pulled from the [EPA website](https://www.epa.gov/external-civil-rights/external-civil-rights-docket-2014-present) and converted using Tabula are stored in `analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_2_9.csv`.
-
-The original PDF is in `analysis/source_data/epa_data/source_pdf/External Civil Rights Docket, 2014-Present _ US EPA.pdf`.
+2. Complaints from Jan. 2014 to June. 13, 2023 that we pulled from the [EPA website](https://www.epa.gov/external-civil-rights/external-civil-rights-docket-2014-present) and copied and pasted into a [spreadsheet](https://docs.google.com/spreadsheets/d/1Q2VbeaBSrd24LUqCO6YDi0joNUE3DRs5tweOHhUa5Yk/edit?pli=1#gid=733128710) that we downloaded as a CSV and loaded into the rig.
 
 3. Complaints from Jan. 2014 to 2023 that Jamie manually verified as a testing dataset stored in `analysis/source_data/manual_data/manual_process_complaint_data_2014_2023.csv`
 

@@ -10,7 +10,8 @@ import logging
 class TitleVIDataClean:
     """Class that handles cleaning EPA Complaints data from 2014 to 2023-02-09"""
 
-    def __init__(self, file_path):
+    def __init__(self, file_path: str, recent_status_date: str):
+        self.RECENT_STATUS_DATE = recent_status_date
         self.file_path = file_path
         self.data = self.load_data()
 
@@ -22,7 +23,7 @@ class TitleVIDataClean:
         """
 
         data = pd.read_csv(self.file_path)
-        data = data.drop("Unnamed: 7", axis="columns")
+        # data = data.drop("Unnamed: 7", axis="columns")
 
         return data
 
@@ -53,6 +54,7 @@ class TitleVIDataClean:
             "date_received",
             "alleged_discrimination_basis",
             "detailed_status",
+            "related_documents",
             "primary_status",
             "referred_agency",
             "secondary_status",
@@ -84,23 +86,6 @@ class TitleVIDataClean:
         logging.warning(
             f"The columns names have changed. Old columns: {old_columns} and new columns: {self.data.columns}"
         )
-
-    def filter_headers(self):
-        """_summary_"""
-        data_length = len(self.data)
-        repeat_headers = self.data[self.data["fy_rec'd"].str.contains("Rec'd")]
-
-        logging.warning(f"Number of repeated headers in data: {len(repeat_headers)}")
-
-        # remove rows with repeated headers cotaining "FY Rec'd"
-        # by index
-        self.data = self.data.drop(repeat_headers.index)
-
-        assert data_length - len(repeat_headers) == len(
-            self.data
-        ), f"Expected {data_length - len(repeat_headers)} rows, got {len(self.data)}"
-
-        return self
 
     def remove_newline_characters(self):
         """_summary_
@@ -224,7 +209,22 @@ class TitleVIDataClean:
         # assign secondary_status column to data with captures
         self.data = self.data.assign(**date_captures)
 
+        # fill null values in recent_status_date column
+        self.data.recent_status_date = self.fill_recent_status_date()
+
         return self
+
+    def fill_recent_status_date(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+        self.data["recent_status_date"] = self.data["recent_status_date"].fillna(
+            self.RECENT_STATUS_DATE
+        )
+
+        return self.data["recent_status_date"]
 
     def extract_referrals(self):
         """_summary_
@@ -287,9 +287,6 @@ class TitleVIDataClean:
         """
         # standardize column names using helpers function
         self.standardize_columns()
-
-        # removes all repetive column names from OCR
-        self.filter_headers()
 
         # remove newline characters from all values
         self.remove_newline_characters()
@@ -449,12 +446,13 @@ class TitleVIDataClean:
             "disc_basis_1",
             "disc_basis_2",
             "time_difference",
+            "related_documents",
         ]
 
         return data[filter_columns]
 
 
-def main(file_path: str, output_path: str):
+def main(file_path: str, output_path: str, recent_status_date: str):
     """
     Calls TitleVIDataClean class to clean data. Outputs cleaned data to csv.
 
@@ -465,13 +463,13 @@ def main(file_path: str, output_path: str):
         None
     """
     # Instantiate an instance of TitleVIDataClean
-    analyzer = TitleVIDataClean(file_path)
+    analyzer = TitleVIDataClean(file_path, recent_status_date)
 
     # Load the data
     data = analyzer.load_data()
 
-    # Assert that the number of rows is 279
-    assert len(data) == 279, f"Unexpected number of rows in dataframe: ${len(data)}"
+    # Assert that the number of rows is 273
+    assert len(data) == 273, f"Unexpected number of rows in dataframe: ${len(data)}"
 
     # Runs all the cleaning functions for the entire class
     data_clean = analyzer.clean_data()

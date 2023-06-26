@@ -2,6 +2,7 @@
 
 import pandas as pd
 import fire
+import numpy as np
 import logging
 
 
@@ -16,19 +17,38 @@ class JoinComplaintData:
     def merge_data(self):
         """Merge mapped_data and manual_data"""
 
+        # some of the epa_file_# values are all uppercase
+        # this will make them lowercase to match the mapped_data
+        self.manual_data["epa_file_#"] = self.manual_data["epa_file_#"].str.lower()
+
         merged_data = pd.merge(
             self.mapped_data,
             self.manual_data,
             how="outer",
-            left_on="epa_file_#",
-            right_on="epa_complaint_#",
+            on="epa_file_#",
             indicator=True,
         )
 
         merged_data = self.change_column_names(merged_data)
+
+        # compared coded status column with manually processed column to target diffs
+        merged_data["compare_statuses"] = self.compare_columns(merged_data)
+
         merged_data = self.filter_columns(merged_data)
 
         return merged_data
+
+    @staticmethod
+    def compare_columns(data: pd.DataFrame):
+        """Compare columns"""
+
+        compare = np.where(
+            data.primary_status_map == data.simplified_status,
+            True,
+            False,
+        )
+
+        return compare
 
     @staticmethod
     def change_column_names(data: pd.DataFrame):
@@ -38,8 +58,9 @@ class JoinComplaintData:
             _type_: _description_
         """
         rename_columns_dict = {
-            "clean_date_received_x": "clean_date_received",
+            "detailed_status_x": "detailed_status",
             "named_entity_x": "named_entity",
+            "clean_date_received_x": "clean_date_received",
         }
 
         return data.rename(columns=rename_columns_dict)
@@ -50,24 +71,41 @@ class JoinComplaintData:
 
         filter_columns = [
             "fy_rec'd",
-            "summary_status",
             "epa_file_#",
+            "summary_status",
+            "_merge",
             "named_entity",
             "clean_date_received",
-            "detailed_status",
-            "primary_status",
-            "primary_status_map",
-            "clean_current_status",
-            "secondary_status",
-            "clean_current_status_reason",
             "recent_status_date",
+            "time_difference",
+            "detailed_status",
+            "primary_status_map",
+            "simplified_status",
+            "compare_statuses",
+            "reason_for_rejection_if_applicable",
+            "presidential_administration",
+            "environmental_justice_issue_cited",
+            "city",
+            "state",
+            "zip_code",
+            "community_impacted",
             "referred_agency",
+            "is_unique",
+            "filed_by_a_lawyer",
+            "group_filing",
+            "filed_on_behalf_of",
+            "epa_initiated_compliance_review",
+            "complaint_about_environmental_justice_matter",
+            "notes_on_ej_categorization",
+            "more_than_one_complaint",
+            "total_related_complaints",
+            "related_complaint_numbers",
+            "complaint_link",
+            "notes",
+            "additional_notes",
             "disc_basis_1",
             "disc_basis_2",
-            "time_difference",
-            "investigated_not_investigated",
-            "manual_final_adjudication_reason",
-            "_merge",
+            "related_documents",
         ]
 
         data = data[filter_columns]

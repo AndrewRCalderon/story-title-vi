@@ -21,7 +21,7 @@ clean-output_data:
 
 ##@ Pipeline for 1996-2013 & 2014-2023 data
 clean-epa-complaints-14-23: analysis/source_data/epa_data/epa_ecrco_complaints_2014_2023_06_13.csv
-	${PYENV} python analysis/processors/clean_epa_complaints_2014_2023.py --file_path=$< --output_path='analysis/output_data/epa_complaints_2014_2023.csv'
+	${PYENV} python analysis/processors/clean_epa_complaints_2014_2023.py --file_path=$< --output_path='analysis/output_data/epa_complaints_2014_2023.csv' --recent_status_date='2023-06-13'
 
 clean-epa-complaints-96-13: analysis/source_data/cpi_data/epa-complaints-1996-2013.csv
 	${PYENV} python analysis/processors/clean_epa_complaints_1996_2013.py --file_path=$< --output_path='analysis/output_data/epa_cpi_complaints_1996_2013.csv'
