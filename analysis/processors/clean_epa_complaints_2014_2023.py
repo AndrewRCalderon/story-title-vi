@@ -5,6 +5,7 @@ import fire
 import logging
 
 
+# helper function
 def clean_columns(data):
     data.columns = (
         data.columns.str.strip()
