@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import pandas as pd
-from processors import clean_columns
 import fire
 import logging
 
