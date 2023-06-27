@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import pandas as pd
-import helper_functions.helpers as helpers
+from processors import clean_columns
 import fire
 import pdb
 import logging
@@ -42,7 +42,7 @@ class TitleVIDataClean:
             _type_: _description_
         """
         old_columns = self.data.columns
-        self.data.columns = helpers.clean_columns(self.data)
+        self.data.columns = clean_columns(self.data)
 
         logging.warning(
             f"The columns names have changed. Old columns: {old_columns} and new columns: {self.data.columns}"
