@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 import pandas as pd
-from processors import clean_columns
 import fire
 import logging
 
 
+# helper function
 def clean_columns(data):
     data.columns = (
         data.columns.str.strip()
