@@ -182,13 +182,19 @@ As we have deepended our reporting, Jamie, Yvette, Grey and I have considered va
 
 ## Action Items
 
-- [ ] Bring in new data from Jamie's manual processing and replace it with Greta & Andrew's manual processing.
+- [x] Bring in new data from Jamie's manual processing and replace it with Greta & Andrew's manual processing.
 
 - [ ] Jamie wants us to compare cases in the data from the 2015 investigation to the 2023 data to see which ones were open, and what changes.
 
 - [ ] Re-run analysis that compares what the data looks like when we treat each row as a case vs when we consolidate related cases using the "highest level of action from the EPA" as the final case status.
 
 - [ ] Put together a list of findings to run by the EPA
+
+- [ ] Any admin closures, copy the final status from manual data
+
+- [ ] Split manual data based on ":" before doing comparison to get primary and secondary status
+
+- [ ] Change statuses from CPI data based on new [data dictionary](https://docs.google.com/spreadsheets/d/1Z3_kPsV0PrScznsHPxhT0aDQKFmfZq2CuEPyZIolpoI/edit#gid=450381695)
 
 ## Authors
 
