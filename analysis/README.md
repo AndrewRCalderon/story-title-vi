@@ -194,7 +194,7 @@ As we have deepended our reporting, Jamie, Yvette, Grey and I have considered va
 
 - [ ] Split manual data based on ":" before doing comparison to get primary and secondary status
 
-- [ ] Change statuses from CPI data based on new [data dictionary](https://docs.google.com/spreadsheets/d/1Z3_kPsV0PrScznsHPxhT0aDQKFmfZq2CuEPyZIolpoI/edit#gid=450381695)
+- [x] Change statuses from CPI data based on new [data dictionary](https://docs.google.com/spreadsheets/d/1Z3_kPsV0PrScznsHPxhT0aDQKFmfZq2CuEPyZIolpoI/edit#gid=450381695)
 
 ## Authors
 

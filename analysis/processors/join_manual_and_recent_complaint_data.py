@@ -21,6 +21,11 @@ class JoinComplaintData:
         # this will make them lowercase to match the mapped_data
         self.manual_data["epa_file_#"] = self.manual_data["epa_file_#"].str.lower()
 
+        # split the "simplified_status" column into two columns
+        self.manual_data[
+            ["simplified_status_primary", "simplified_status_secondary"]
+        ] = self.manual_data["simplified_status"].str.split(":", expand=True)
+
         merged_data = pd.merge(
             self.mapped_data,
             self.manual_data,
@@ -32,7 +37,7 @@ class JoinComplaintData:
         merged_data = self.change_column_names(merged_data)
 
         # compared coded status column with manually processed column to target diffs
-        merged_data["compare_statuses"] = self.compare_columns(merged_data)
+        merged_data["compare_primary_statuses"] = self.compare_columns(merged_data)
 
         merged_data = self.filter_columns(merged_data)
 
@@ -43,7 +48,7 @@ class JoinComplaintData:
         """Compare columns"""
 
         compare = np.where(
-            data.primary_status_map == data.simplified_status,
+            data.primary_status_map == data.simplified_status_primary,
             True,
             False,
         )
@@ -81,7 +86,9 @@ class JoinComplaintData:
             "detailed_status",
             "primary_status_map",
             "simplified_status",
-            "compare_statuses",
+            "simplified_status_primary",
+            "simplified_status_secondary",
+            "compare_primary_statuses",
             "reason_for_rejection_if_applicable",
             "presidential_administration",
             "environmental_justice_issue_cited",

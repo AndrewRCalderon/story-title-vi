@@ -32,6 +32,6 @@ analysis/output_data/mapped_epa_complaints_2014_2023.csv: analysis/output_data/e
 analysis/output_data/joined_epa_complaints_2014_2023.csv: analysis/output_data/mapped_epa_complaints_2014_2023.csv analysis/source_data/manual_data/manual_process_complaint_data_2014_2023.csv
 	${PYENV} python analysis/processors/join_manual_and_recent_complaint_data.py $^ --output_path=$@
 
-analysis/output_data/appended_epa_complaints_1996_2023.csv: analysis/output_data/joined_epa_complaints_2014_2023.csv analysis/output_data/epa_cpi_complaints_1996_2013.csv
+analysis/output_data/appended_epa_complaints_1996_2023.csv: analysis/output_data/joined_epa_complaints_2014_2023.csv analysis/output_data/epa_cpi_complaints_1996_2013.csv 
 	${PYENV} python analysis/processors/append_cpi_and_joined_data.py $^ --output_path=$@
 
