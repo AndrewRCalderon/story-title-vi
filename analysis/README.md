@@ -190,7 +190,7 @@ As we have deepended our reporting, Jamie, Yvette, Grey and I have considered va
 
 - [ ] Put together a list of findings to run by the EPA
 
-- [ ] Any admin closures, copy the final status from manual data
+- [x] Any admin closures, copy the final status from manual data
 
 - [ ] Split manual data based on ":" before doing comparison to get primary and secondary status
 

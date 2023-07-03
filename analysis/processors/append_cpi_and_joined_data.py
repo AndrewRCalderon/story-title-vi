@@ -46,6 +46,19 @@ class EpaCpiDataAppender:
         return data
 
     @staticmethod
+    def rename_columns(data: pd.DataFrame):
+        new_columns = {
+            "clean_date_received": "date_received",
+            "detailed_status": "original_detailed_status",
+            "primary_status_map": "mapped_primary_status_original_detailed",
+            "simplified_status": "manual_simplified_status",
+        }
+
+        data = data.rename(new_columns, axis=1)
+
+        return data
+
+    @staticmethod
     def map_new_primary_status_to_cpi_statuses(data: pd.DataFrame):
         """_summary_
 
@@ -87,7 +100,9 @@ def main(file_path1: str, file_path2: str, output_path: str):
 
     cleaned_data = EpaCpiDataAppender.clean_data(appended_data)
 
-    cleaned_data.to_csv(output_path, index=False)
+    renamed_data = EpaCpiDataAppender.rename_columns(cleaned_data)
+
+    renamed_data.to_csv(output_path, index=False)
 
 
 if __name__ == "__main__":
