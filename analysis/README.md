@@ -182,6 +182,8 @@ As we have deepended our reporting, Jamie, Yvette, Grey and I have considered va
 
 ## Action Items
 
+_Changelog: recent as of July 1, 2021_
+
 - [x] Bring in new data from Jamie's manual processing and replace it with Greta & Andrew's manual processing.
 
 - [ ] Jamie wants us to compare cases in the data from the 2015 investigation to the 2023 data to see which ones were open, and what changes.
@@ -192,7 +194,7 @@ As we have deepended our reporting, Jamie, Yvette, Grey and I have considered va
 
 - [x] Any admin closures, copy the final status from manual data
 
-- [ ] Split manual data based on ":" before doing comparison to get primary and secondary status
+- [x] Split manual data based on ":" before doing comparison to get primary and secondary status
 
 - [x] Change statuses from CPI data based on new [data dictionary](https://docs.google.com/spreadsheets/d/1Z3_kPsV0PrScznsHPxhT0aDQKFmfZq2CuEPyZIolpoI/edit#gid=450381695)
 
