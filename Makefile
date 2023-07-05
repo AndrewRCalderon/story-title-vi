@@ -6,7 +6,7 @@ PYENV=pipenv run
 
 ##@ Basic Usage Shorcuts
 .PHONY: all
-all: clean-epa-complaints-14-23 clean-epa-complaints-96-13 analysis/output_data/mapped_epa_complaints_2014_2023.csv analysis/output_data/joined_epa_complaints_2014_2023.csv
+all: clean-epa-complaints-14-23 clean-epa-complaints-96-13 analysis/output_data/mapped_epa_complaints_2014_2023.csv analysis/output_data/joined_epa_complaints_2014_2023.csv analysis/output_data/appended_epa_complaints_1996_2023.csv
 
 .PHONY: tests
 tests:

@@ -89,7 +89,6 @@ class JoinComplaintData:
             "simplified_status_primary",
             "simplified_status_secondary",
             "compare_primary_statuses",
-            "reason_for_rejection_if_applicable",
             "presidential_administration",
             "environmental_justice_issue_cited",
             "city",
