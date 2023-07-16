@@ -39,9 +39,25 @@ class JoinComplaintData:
         # compared coded status column with manually processed column to target diffs
         merged_data["compare_primary_statuses"] = self.compare_columns(merged_data)
 
+        # lower case specific columns
+        columns = ["is_unique"]
+        for column in columns:
+            merged_data = self.lower_case(merged_data, column)
+
         merged_data = self.filter_columns(merged_data)
 
         return merged_data
+
+    @staticmethod
+    def lower_case(data: pd.DataFrame, column_name: str):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+        data[column_name] = data[column_name].str.lower()
+
+        return data
 
     @staticmethod
     def compare_columns(data: pd.DataFrame):
