@@ -25,8 +25,6 @@ class EpaCpiDataAppender:
 
         # add a column to each dataframe that indicates the origin of the data
         self.flag_dfs()
-        # map the new primary status to the cpi statuses
-        self.cpi_data = self.map_new_primary_status_to_cpi_statuses(self.cpi_data)
 
         appended_data = pd.concat(
             [self.joined_data, self.cpi_data],
@@ -55,35 +53,6 @@ class EpaCpiDataAppender:
         }
 
         data = data.rename(new_columns, axis=1)
-
-        return data
-
-    @staticmethod
-    def map_new_primary_status_to_cpi_statuses(data: pd.DataFrame):
-        """_summary_
-
-        Args:
-            data (pd.DataFrame): _description_
-
-        Returns:
-            _type_: _description_
-        """
-        mapping = {
-            "rejected": r"^Denied - Claims, Untimely|^Denied - Financial, Claims, Untimely|^Denied - Financial, Untimely|^Denied - Untimely, Claims|^Denied - Financial|^Denied|^Denied - Financial, Untimely|^Denied - Untimely, Litigation|^Denied - Financial, Claims|^Denied - Financial, Untimely, Claims|^Dismissed - Moot|^Dismissed Without Prejudice|^Dismissed without prejudice; Denied - Untimely|^Dismissed without prejudice; Denied - Financial|^Dismissed without prejudice|^Denied - Untimely Claims|^Denied- Claims|^Denied - Untimely Litigation|^Dismissed|^Denied - Untimely|^Denied - Moot|^Denied - Financial|^Denied|^Denied - Claim|^Denied - Claims|^Denied - Claims Untimely|^Denied - Financial  Untimely|^Denied - Financial Claims",
-            "rejected and referred": r"^Denied - Untimely, Referred|^Denied - Financial, Claims, Referred|^Denied - Referred|^Denied - Financial, Referred|^Denied - Financial; Referred|^Closed - Referred|^Denied - Claim \(referred\)|^Denied - Claims Referred|^Denied - Claims, Referred|^Denied - Financial Referred",
-            "closed: complaint withdrawn": r"^Closed - Withdrawn",
-            "pending": r"Pending",
-            "resolved: agreement": r"^Closed - Agreement|^Closed - Informally Resolved|^Closed - Settlement",
-            "": r".*",
-        }
-
-        data["final_adjudication_&_reason"] = (
-            data["final_adjudication_&_reason"].str.strip().str.replace("  ", " ")
-        )
-
-        data["primary_status_map"] = data["final_adjudication_&_reason"].apply(
-            lambda x: [k for k, v in mapping.items() if re.fullmatch(v, str(x))][0]
-        )
 
         return data
 
