@@ -36,7 +36,6 @@ class TitleVIDataClean:
         """
 
         data = pd.read_csv(self.file_path)
-        # data = data.drop("Unnamed: 7", axis="columns")
 
         return data
 

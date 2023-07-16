@@ -1,0 +1,33 @@
+CPI,ECRCO
+Denied - Claims Referred,rejected and referred
+Pending,pending
+Closed - Agreement,resolved: agreement
+Closed - Informally Resolved,resolved: agreement
+Closed - Referred,rejected and referred
+Closed - Settlement,resolved: agreement
+Closed - Withdrawn,closed: complaint withdrawn
+Denied,rejected
+Denied - Claim,rejected
+Denied - Claim (referred),rejected and referred
+Denied - Claims,rejected
+Denied - Claims Referred,rejected and referred
+Denied - Claims Untimely,rejected
+Denied - Financial,rejected
+Denied - Financial  Untimely,rejected
+Denied - Financial Claims,rejected
+Denied - Financial Claims,rejected
+Denied - Referred ,rejected and referred
+Denied - Financial Referred,rejected and referred
+Denied - Financial Untimely Claims,rejected
+Denied - Financial; Referred,rejected and referred
+Denied - Moot,rejected
+Denied - Untimely,rejected
+Dismissed,rejected
+Denied - Untimely Litigation,rejected
+Denied- Claims,rejected
+Denied - Untimely Claims,rejected
+Dismissed without prejudice,rejected
+Dismissed without prejudice; Denied - Financial,rejected
+Dismissed without prejudice; Denied - Untimely,rejected
+Dismissed Without Prejudice,rejected
+Dismissed - Moot,rejected
